@@ -1,0 +1,9 @@
+{
+    "name": "hugo",
+    "version": "1.0.0",
+    "description": "Hugo Theme for Letterpad",
+    "author": "First Last <first.last@example.com>",
+    "dependencies": {
+        "reading-time": "^1.1.1"
+    }
+}
