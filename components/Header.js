@@ -42,16 +42,19 @@ class Header extends Component {
     }
     render() {
         const settings = this.props.settings;
-        const menu = JSON.parse(this.props.settings.menu.value);
+        const menu = JSON.parse(settings.menu.value);
         const menucollapsedClass = this.state.menuOpen ? "" : "collapsed";
+        const logo = settings.site_logo.value || null;
 
         return (
             <header className="site-header">
-                <img
-                    className="avatar"
-                    src="https://nasirian.com/wp-content/uploads/2017/04/33b869f90619e81763dbf1fccc896d8d-180x180.png"
-                    alt="Avatar"
-                />
+                {logo && (
+                    <img
+                        className="avatar"
+                        src={settings.site_logo.value}
+                        alt="Avatar"
+                    />
+                )}
 
                 <h1 className="title">{settings.site_title.value}</h1>
 
