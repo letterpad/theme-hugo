@@ -79,14 +79,15 @@ export default class Article extends Component {
                     </div>
                 )}
                 {this.props.adjacentPosts}
-                {disqusShortname && (
-                    <div id="disqus_thread_parent">
-                        <Disqus.DiscussionEmbed
-                            shortname={disqusShortname}
-                            config={disqusConfig}
-                        />
-                    </div>
-                )}
+                {disqusShortname &&
+                    post.type == "post" && (
+                        <div id="disqus_thread_parent">
+                            <Disqus.DiscussionEmbed
+                                shortname={disqusShortname}
+                                config={disqusConfig}
+                            />
+                        </div>
+                    )}
             </section>
         );
     }

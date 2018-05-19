@@ -58,7 +58,7 @@ class SinglePage extends Component {
                     image={post.cover_image}
                     settings={this.props.settings || {}}
                 />
-                <Article post={post} />
+                <Article post={post} settings={this.props.settings} />
             </div>
         );
     }

@@ -10,17 +10,6 @@ const Paginate = ({ data, count, page, loadMore }) => {
     const pages = Array.from(Array(Math.ceil(count / limit)));
 
     return (
-        <div>
-            {data.splice(page, limit)}
-            <ReactPaginate
-                pageCount={pages}
-                pageRangeDisplayed={limit}
-                marginPagesDisplayed={2}
-                onPageChange={loadMore}
-            />
-        </div>
-    );
-    return (
         <InfiniteScroll
             pageStart={1}
             loadMore={loadMore}
