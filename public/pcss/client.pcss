@@ -1164,4 +1164,57 @@ table.is-striped tbody tr:not(.is-selected):nth-child(even):hover {
     background-color: #5fbf5e;
     opacity: 0.8;
 }
-/*# sourceMappingURL=bundle.css.map */
+
+.block-404 {
+    display: flex;
+    flex-direction: column;
+    margin-bottom: 80px;
+    .error-block {
+        text-align: center;
+        h1 {
+            font-size: 10rem;
+            margin: 0px;
+            margin-bottom: 20px;
+        }
+        h3 {
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-weight: 800;
+        }
+        .error-message {
+            font-size: 13px;
+            color: rgb(159, 159, 159);
+        }
+        a {
+            text-transform: uppercase;
+            font-size: 16px;
+            color: #000;
+            font-weight: bold;
+        }
+        .go-home {
+            margin-top: 40px;
+        }
+    }
+    .image-404 {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin-top: 45px;
+        margin-left: 50px;
+        img {
+            max-width: 280px;
+            max-height: 280px;
+        }
+    }
+}
+@media (min-width: 800px) {
+    .block-404 {
+        width: 800px;
+        margin: auto;
+    }
+}
+@media (max-width: 800px) {
+    .image-404 {
+        display: none !important;
+    }
+}

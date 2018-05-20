@@ -47,7 +47,10 @@ export default class Article extends Component {
             <section className="main post-detail">
                 {post.cover_image.length > 0 && (
                     <div className="hero-banner">
-                        <img width="100%" src={post.cover_image} />
+                        <img
+                            width="100%"
+                            src={config.baseName + post.cover_image}
+                        />
                     </div>
                 )}
                 <header className="post-header">
