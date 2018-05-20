@@ -2,29 +2,28 @@ import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
 
 const SocialIcons = ({ settings }) => {
-    const SocialItems = {
-        social_facebook: { name: "Facebook", icon: "icon-facebook" },
-        social_twitter: { name: "Twitter", icon: "icon-twitter" },
-        social_instagram: { name: "Instagram", icon: "icon-instagram" }
-    };
-
-    return Object.keys(SocialItems)
-        .filter(key => {
-            return settings[key].value.length > 0;
-        })
-        .map((key, i) => {
+    var a = Object.keys(settings)
+        // get all the settings with start with "social_"
+        .filter(
+            setting =>
+                setting.indexOf("social_") === 0 &&
+                settings[setting].value.length > 0
+        )
+        .map(setting => {
+            const icon = "icon icon-" + setting.split("_")[1];
             return (
-                <li key={i} className="social-item">
+                <li key={setting} className="social-item">
                     <a
                         target="_blank"
-                        href={settings[key].value}
-                        title={SocialItems[key].name}
+                        href={settings[setting].value}
+                        title={setting}
                     >
-                        <span className={"icon " + SocialItems[key].icon} />
+                        <span className={icon} />
                     </a>
                 </li>
             );
         });
+    return a;
 };
 
 class Header extends Component {
@@ -57,7 +56,6 @@ class Header extends Component {
                 )}
 
                 <h1 className="title">{settings.site_title.value}</h1>
-
                 <p className="subtitle">{settings.site_tagline.value}</p>
                 <button
                     className="menu-toggle"
@@ -76,8 +74,7 @@ class Header extends Component {
                     <ul className="menu-list">
                         {menu
                             .filter(item => item.type !== "label")
-                            .reverse()
-                            .map(item => {
+                            .map((item, i) => {
                                 let to =
                                     (item.type == "page"
                                         ? "/page/"
@@ -86,7 +83,7 @@ class Header extends Component {
                                     to = "/";
                                 }
                                 return (
-                                    <li className="menu-item">
+                                    <li className="menu-item" key={i}>
                                         <NavLink
                                             to={to}
                                             className="normal"

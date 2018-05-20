@@ -65,19 +65,24 @@ export default class Article extends Component {
                         }}
                     />
                 </article>
-                {displayAuthor && (
-                    <div className="author-info">
-                        <div className="author-avatar">
-                            <img src={config.baseName + post.author.avatar} />
-                        </div>
-                        <div className="author-details">
-                            <div className="author-name">
-                                {post.author.fname} {post.author.lname}
+                {displayAuthor &&
+                    post.type == "post" && (
+                        <div className="author-info">
+                            <div className="author-avatar">
+                                <img
+                                    src={config.baseName + post.author.avatar}
+                                />
                             </div>
-                            <div className="author-bio">{post.author.bio}</div>
+                            <div className="author-details">
+                                <div className="author-name">
+                                    {post.author.fname} {post.author.lname}
+                                </div>
+                                <div className="author-bio">
+                                    {post.author.bio}
+                                </div>
+                            </div>
                         </div>
-                    </div>
-                )}
+                    )}
                 {this.props.adjacentPosts}
                 {disqusShortname &&
                     post.type == "post" && (
