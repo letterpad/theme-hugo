@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link, NavLink } from "react-router-dom";
+import config from "config";
 
 const SocialIcons = ({ settings }) => {
     var a = Object.keys(settings)
@@ -50,7 +51,7 @@ class Header extends Component {
                 {logo && (
                     <img
                         className="avatar"
-                        src={settings.site_logo.value}
+                        src={config.baseName + settings.site_logo.value}
                         alt="Avatar"
                     />
                 )}
