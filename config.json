@@ -1,6 +1,7 @@
 {
     "name": "Hugo",
-    "description": "A theme for writing classic blogs",
-    "author": "Abhishek Saha",
-    "thumbnail": "https://graffitiwallpaper.com/pics/listings/52_wide.jpg"
+    "description":
+        "A theme for writing classic blogs. Seo optimised, spa, disqus integrtion",
+    "author": "Redsnow",
+    "thumbnail": "/images/thumbnail.png"
 }

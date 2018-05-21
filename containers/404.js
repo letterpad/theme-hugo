@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
+import config from "config";
 
 export default class NotFound extends Component {
     render() {
@@ -7,7 +8,7 @@ export default class NotFound extends Component {
             <section className="main">
                 <div className="block-404">
                     <div className="image-404">
-                        <img src="/hugo/images/robot.png" />
+                        <img src={config.baseName + "/hugo/images/robot.png"} />
                     </div>
                     <div className="error-block">
                         <h1>404</h1>

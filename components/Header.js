@@ -52,12 +52,16 @@ class Header extends Component {
                     <img
                         className="avatar"
                         src={config.baseName + settings.site_logo.value}
-                        alt="Avatar"
+                        alt="Logo"
                     />
                 )}
 
-                <h1 className="title">{settings.site_title.value}</h1>
-                <p className="subtitle">{settings.site_tagline.value}</p>
+                {!logo && (
+                    <h1 className="title">{settings.site_title.value}</h1>
+                )}
+                {!logo && (
+                    <p className="subtitle">{settings.site_tagline.value}</p>
+                )}
                 <button
                     className="menu-toggle"
                     type="button"
