@@ -55,10 +55,12 @@ export default function Layout(Element, props, name) {
                     <Hero display={false} />
 
                     <Element {..._props} setHeroDetails={this.setHeroDetails} />
-                    <footer className="site-footer">
-                        <p>© 2017-2018 Letterpad Blog</p>
-                        <p>Powered by with theme Hugo.</p>
-                    </footer>
+                    <footer
+                        className="site-footer"
+                        dangerouslySetInnerHTML={{
+                            __html: settings.site_footer.value
+                        }}
+                    />
                 </div>
             );
         }

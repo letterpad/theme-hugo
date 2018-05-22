@@ -56,12 +56,9 @@ class Header extends Component {
                     />
                 )}
 
-                {!logo && (
-                    <h1 className="title">{settings.site_title.value}</h1>
-                )}
-                {!logo && (
-                    <p className="subtitle">{settings.site_tagline.value}</p>
-                )}
+                <h1 className="title">{settings.site_title.value}</h1>
+                <p className="subtitle">{settings.site_tagline.value}</p>
+
                 <button
                     className="menu-toggle"
                     type="button"

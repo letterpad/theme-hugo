@@ -17,7 +17,7 @@ html {
 }
 body {
     color: #4a4a4a;
-    background: #181b31;
+    background: #1a1c27;
     text-rendering: optimizeLegibility;
     -webkit-font-smoothing: antialiased;
     -moz-osx-font-smoothing: grayscale;
@@ -71,6 +71,10 @@ a:hover {
     .site-header {
         width: 100%;
         position: relative;
+        .title,
+        .subtitle {
+            display: block;
+        }
     }
 }
 .main {
@@ -194,9 +198,7 @@ a:hover {
     margin: 1rem auto;
     color: #fff;
 }
-.title {
-    display: none;
-}
+
 @media screen and (max-width: 800px) {
     .title {
         margin-top: 3rem;
