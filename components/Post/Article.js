@@ -39,13 +39,6 @@ export default class Article extends Component {
                     </div>
                 )}
                 <header className="post-header">
-                    <small>
-                        {categories.map((item, i) => (
-                            <Link key={i} to={"/category/" + item.slug}>
-                                {item.name}
-                            </Link>
-                        ))}
-                    </small>
                     <h1 className="post-title">{post.title}</h1>
                     <p className="post-meta">
                         {this.props.post.author.fname} ·{" "}
