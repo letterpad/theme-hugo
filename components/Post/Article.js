@@ -1,9 +1,9 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import AdjacentPosts from "./AdjacentPosts";
 import config from "config";
 import Disqus from "disqus-react";
+import { getTagsAndCategories } from "shared/util";
 
 export default class Article extends Component {
     componentDidMount() {
@@ -13,8 +13,6 @@ export default class Article extends Component {
     }
 
     render() {
-        const tags = [];
-        const categories = [];
         const post = this.props.post;
 
         const disqusShortname = this.props.settings.disqus_id.value;
@@ -24,21 +22,8 @@ export default class Article extends Component {
             title: post.title
         };
 
-        post.taxonomies.forEach((taxonomy, i) => {
-            if (taxonomy.type === "post_category") {
-                categories.push(
-                    <Link key={i} to={"/category/" + taxonomy.slug}>
-                        {taxonomy.name}
-                    </Link>
-                );
-            } else {
-                tags.push(
-                    <Link key={i} to={"/tag/" + taxonomy.slug}>
-                        #{taxonomy.name}
-                    </Link>
-                );
-            }
-        });
+        let { tags, categories } = getTagsAndCategories(post.taxonomies);
+
         const content = post.mode == "markdown" ? post.mdPreview : post.body;
         const displayAuthor = JSON.parse(
             this.props.settings.displayAuthorInfo.value
@@ -54,6 +39,13 @@ export default class Article extends Component {
                     </div>
                 )}
                 <header className="post-header">
+                    <small>
+                        {categories.map((item, i) => (
+                            <Link key={i} to={"/category/" + item.slug}>
+                                {item.name}
+                            </Link>
+                        ))}
+                    </small>
                     <h1 className="post-title">{post.title}</h1>
                     <p className="post-meta">
                         {this.props.post.author.fname} ·{" "}

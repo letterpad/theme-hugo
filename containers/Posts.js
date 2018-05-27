@@ -77,7 +77,6 @@ class Posts extends Component {
                         />
                     </div>
                 )}
-                {articles}
                 <Paginate
                     data={articles}
                     count={this.props.total}

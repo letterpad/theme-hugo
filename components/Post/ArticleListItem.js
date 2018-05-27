@@ -9,6 +9,7 @@ class ArticleListItem extends Component {
         const post = this.props.post;
         let href = `/${post.type}/${post.slug}`;
         const content = post.mode == "markdown" ? post.mdPreview : post.body;
+
         return (
             <article className="post-entry">
                 <header className="post-header">
