@@ -1,5 +1,5 @@
 import React, { Component } from "react";
-import { Link, NavLink } from "react-router-dom";
+import { NavLink } from "react-router-dom";
 import config from "config";
 
 const SocialIcons = ({ settings }) => {
@@ -16,6 +16,7 @@ const SocialIcons = ({ settings }) => {
                 <li key={setting} className="social-item">
                     <a
                         target="_blank"
+                        rel="noopener"
                         href={settings[setting].value}
                         title={setting}
                     >
