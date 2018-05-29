@@ -1,11 +1,11 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import Header from "../../components/Header";
 import Search from "../../components/Sidebar/Search";
 
 require("../../public/pcss/client.pcss");
 
-export default function Layout(Element, props, name) {
+export default function Layout(Element, props) {
+    const name = Element.name;
     const settings = props.settings;
 
     return class extends Component {
