@@ -8,7 +8,6 @@ import AdjacentPostsData from "shared/data-connectors/AdjacentPostsData";
 import SinglePostData from "shared/data-connectors/SinglePostData";
 import moment from "moment";
 import AdjacentPosts from "../components/Post/AdjacentPosts";
-import { getTagsAndCategories } from "shared/util";
 
 class SinglePost extends Component {
     constructor(props) {
@@ -38,7 +37,6 @@ class SinglePost extends Component {
                 <OhSnap message="Sorry, this page does not exist or might be restricted." />
             );
         }
-        const { tags, categories } = getTagsAndCategories();
 
         return (
             <div>

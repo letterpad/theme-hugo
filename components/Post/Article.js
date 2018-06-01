@@ -21,7 +21,7 @@ export default class Article extends Component {
             title: post.title
         };
 
-        //let { tags, categories } = getTagsAndCategories(post.taxonomies || []);
+        let { tags, categories } = getTagsAndCategories(post.taxonomies || []);
 
         const content = post.mode == "markdown" ? post.mdPreview : post.body;
         const displayAuthor = JSON.parse(
