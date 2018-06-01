@@ -20,6 +20,7 @@ const Post = ({ post, label, direction }) => {
 };
 
 const AdjacentPosts = ({ adjacentPosts }) => {
+    if (!adjacentPosts) return <div />;
     let prev = adjacentPosts.previous ? (
         <Post
             direction="previous"
