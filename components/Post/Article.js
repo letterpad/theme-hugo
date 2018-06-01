@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import moment from "moment";
 import config from "config";
 import Disqus from "disqus-react";
@@ -22,7 +21,7 @@ export default class Article extends Component {
             title: post.title
         };
 
-        let { tags, categories } = getTagsAndCategories(post.taxonomies);
+        //let { tags, categories } = getTagsAndCategories(post.taxonomies || []);
 
         const content = post.mode == "markdown" ? post.mdPreview : post.body;
         const displayAuthor = JSON.parse(
