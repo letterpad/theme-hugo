@@ -46,7 +46,7 @@ class SinglePost extends Component {
                     schema="BlogPosting"
                     title={this.props.post.title}
                     description={this.props.post.excerpt}
-                    path={"/post/" + this.props.match.params.slug}
+                    path={this.props.location.pathname}
                     contentType="article"
                     category={categories.join(",")}
                     tags={tags}
@@ -68,7 +68,7 @@ class SinglePost extends Component {
 SinglePost.propTypes = {
     post: PropTypes.object,
     adjacentPosts: PropTypes.object,
-    match: PropTypes.object,
+    location: PropTypes.object,
     settings: PropTypes.settings,
     adjPostsLoading: PropTypes.bool,
     loading: PropTypes.bool,

@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 import Article from "../components/Post/Article";
 import Loader from "../components/Loader";
 import SEO from "../components/SEO";
@@ -51,7 +52,7 @@ class SinglePage extends Component {
                     schema="BlogPosting"
                     title={post.title}
                     description={post.excerpt}
-                    path={"/post/" + this.props.match.params.slug}
+                    path={this.props.location.pathname}
                     contentType="article"
                     category={categories.join(",")}
                     tags={tags}
@@ -63,5 +64,13 @@ class SinglePage extends Component {
         );
     }
 }
+
+SinglePage.propTypes = {
+    page: PropTypes.object,
+    loading: PropTypes.bool,
+    location: PropTypes.object,
+    settings: PropTypes.settings,
+    setHeroDetails: PropTypes.func
+};
 
 export default SinglePageData(SinglePage);
