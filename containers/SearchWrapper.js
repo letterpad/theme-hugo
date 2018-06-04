@@ -13,7 +13,6 @@ class SearchWrapper extends Component {
     constructor(props) {
         super(props);
         this.loadData = this.loadData.bind(this);
-        this.addGridOnClient = this.addGridOnClient.bind(this);
         this.state = {
             loading: true,
             posts: [],
@@ -98,33 +97,7 @@ class SearchWrapper extends Component {
             });
         }
     }
-    addGridOnClient(items) {
-        if (typeof window !== "undefiend") {
-            const StackGrid = require("react-stack-grid").default;
-            let windowWidth = this.props.clientWidth;
-            let gridWidth = "33.33%";
-            if (windowWidth < 900) {
-                gridWidth = "50%";
-            }
-            if (windowWidth < 600) {
-                gridWidth = "100%";
-            }
-            return (
-                <StackGrid
-                    gridRef={grid => (this.grid = grid)}
-                    className="post-grid"
-                    columnWidth={gridWidth}
-                    gutterWidth={24}
-                    gutterHeight={24}
-                    enableSSR={true}
-                    appearDelay={0}
-                >
-                    {items}
-                </StackGrid>
-            );
-        }
-        return items;
-    }
+
     render() {
         if (this.state.loading) {
             return <Loader />;
@@ -140,7 +113,7 @@ class SearchWrapper extends Component {
         return (
             <div>
                 <Paginate
-                    data={this.addGridOnClient(posts)}
+                    data={posts}
                     count={this.state.total}
                     page={this.state.pageNo[type]}
                     loadMore={this.loadData}

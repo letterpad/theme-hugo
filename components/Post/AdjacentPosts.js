@@ -2,8 +2,6 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AdjacentPostsData from "shared/data-connectors/AdjacentPostsData";
 import PropTypes from "prop-types";
-import moment from "moment";
-import config from "config";
 
 const Post = ({ post, label, direction }) => {
     return (
