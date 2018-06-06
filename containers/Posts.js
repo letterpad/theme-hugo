@@ -73,7 +73,10 @@ class Posts extends Component {
                     <div className="hero-banner">
                         <img
                             width="100%"
-                            src={this.props.settings.banner.value}
+                            src={
+                                config.baseName +
+                                this.props.settings.banner.value
+                            }
                         />
                     </div>
                 )}

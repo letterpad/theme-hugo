@@ -296,7 +296,7 @@ a:hover {
     }
 }
 .hero-banner {
-    margin: -16px -33px 0px;
+    margin: -16px -33px 33px;
 }
 @media screen and (max-width: 800px) {
     .hero-banner {
@@ -1005,10 +1005,14 @@ table.is-striped tbody tr:not(.is-selected):nth-child(even):hover {
         article {
             flex-direction: column-reverse;
             .post-image {
+                overflow: visible;
                 flex: 0;
                 img {
                     object-fit: cover;
                     object-position: bottom;
+                    &:hover {
+                        transform: scale(1);
+                    }
                 }
             }
         }
