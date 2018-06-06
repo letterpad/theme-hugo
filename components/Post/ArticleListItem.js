@@ -48,4 +48,4 @@ class ArticleListItem extends Component {
     }
 }
 
-export default LazyLoad(ArticleListItem);
+export default ArticleListItem;
