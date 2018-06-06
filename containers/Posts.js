@@ -77,9 +77,10 @@ class Posts extends Component {
                         />
                     </div>
                 )}
+                {articles}
                 <Paginate
-                    data={articles}
                     count={this.props.total}
+                    match={this.props.match}
                     page={this.page}
                     loadMore={this.loadMore}
                 />

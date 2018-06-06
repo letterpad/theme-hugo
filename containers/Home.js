@@ -15,7 +15,8 @@ export default class Home extends Component {
         if (home[0].type === "label") {
             home = [home[0].children[0]];
         }
-        if (this.props.match.path === "/") {
+        let path = this.props.match.path;
+        if (path === "/" || path.indexOf("/home/page/") === 0) {
             if (home[0].type === "category") {
                 return <Posts slug={home[0].slug} {...this.props} />;
             }

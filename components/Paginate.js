@@ -1,22 +1,38 @@
 import React from "react";
 import PropTypes from "prop-types";
-import config from "../../../../config";
-import InfiniteScroll from "react-infinite-scroller";
+import { Link } from "react-router-dom";
 
-const Paginate = ({ data, count, page, loadMore }) => {
-    const limit = config.itemsPerPage;
-    const pages = Array.from(Array(Math.ceil(count / limit)));
+const Paginate = ({ count, match }) => {
+    const totalPages = Array.from(Array(Math.ceil(count / 6)));
 
-    return (
-        <InfiniteScroll
-            pageStart={1}
-            loadMore={loadMore}
-            hasMore={page < pages.length}
-            loader={<div className="loader1">Loading ...</div>}
-        >
-            {data}
-        </InfiniteScroll>
-    );
+    const pages = totalPages.map((_, i) => {
+        const page = i + 1;
+        let to = "/";
+
+        if (match.path == "/") {
+            to = "/home/page/" + page;
+        } else if (
+            match.path == "/posts/:slug" ||
+            match.path == "/posts/:slug/page/:page_no"
+        ) {
+            to = "/posts/" + match.params.slug + "/page/" + page;
+        }
+        let selected = parseInt(match.params.page_no) === page ? "active" : "";
+
+        if (!match.params.page_no && page == 1) {
+            selected = "active";
+        }
+
+        return (
+            <li key={i}>
+                <Link className={selected} to={to}>
+                    {page}
+                </Link>
+            </li>
+        );
+    });
+
+    return <ul className="pagination">{pages}</ul>;
 };
 
 Paginate.propTypes = {
