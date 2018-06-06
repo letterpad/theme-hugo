@@ -1,6 +1,6 @@
 import React, { Component } from "react";
 import Header from "../../components/Header";
-import Search from "../../components/Sidebar/Search";
+import config from "config";
 
 require("../../public/pcss/client.pcss");
 
@@ -12,7 +12,7 @@ export default function Layout(Element, props) {
         constructor(props) {
             super(props);
             this.state = {
-                image: settings.banner.value,
+                image: config.baseName + settings.banner.value,
                 title: settings.site_title.value,
                 subTitle: settings.site_tagline.value
             };

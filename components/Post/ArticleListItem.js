@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import LazyLoad from "./LazyLoad";
+import config from "config";
 import LazyImage from "../../../../helpers/LazyImage";
 const readingTime = require("reading-time");
 
@@ -36,7 +36,10 @@ class ArticleListItem extends Component {
                 {post.cover_image != "" && (
                     <div className="post-image">
                         <Link className="post-link" to={href}>
-                            <LazyImage src={post.cover_image} width="100%" />
+                            <LazyImage
+                                src={config.baseName + post.cover_image}
+                                width="100%"
+                            />
                         </Link>
                     </div>
                 )}
