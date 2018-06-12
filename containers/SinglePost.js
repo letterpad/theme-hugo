@@ -22,7 +22,7 @@ class SinglePost extends Component {
             nextProps.setHeroDetails({
                 image: nextProps.settings.banner.value,
                 title: nextProps.settings.site_title.value,
-                subTitle: moment(new Date(nextProps.page.created_at)).format(
+                subTitle: moment(new Date(nextProps.post.created_at)).format(
                     "LL"
                 )
             });
