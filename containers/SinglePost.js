@@ -17,17 +17,20 @@ class SinglePost extends Component {
             loading: true
         };
     }
-    componentWillReceiveProps(nextProps) {
-        if (this.state.loading && !nextProps.loading && nextProps.post) {
-            this.setState({ loading: false });
-            this.props.setHeroDetails({
-                image: nextProps.post.cover_image,
-                title: nextProps.post.title,
-                subTitle: moment(new Date(nextProps.post.created_at)).format(
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (!nextProps.loading && prevState.loading) {
+            nextProps.setHeroDetails({
+                image: nextProps.settings.banner.value,
+                title: nextProps.settings.site_title.value,
+                subTitle: moment(new Date(nextProps.page.created_at)).format(
                     "LL"
                 )
             });
+            return {
+                loading: false
+            };
         }
+        return null;
     }
     render() {
         if (this.props.loading || this.props.adjPostsLoading) {

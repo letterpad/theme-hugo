@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import config from "config";
 
@@ -56,10 +56,10 @@ class Header extends Component {
                         alt="Logo"
                     />
                 )}
-
-                <h1 className="title">{settings.site_title.value}</h1>
-                <p className="subtitle">{settings.site_tagline.value}</p>
-
+                <div className={!logo ? "no-logo" : "with-logo"}>
+                    <h1 className="title">{settings.site_title.value}</h1>
+                    <p className="subtitle">{settings.site_tagline.value}</p>
+                </div>
                 <button
                     className="menu-toggle"
                     type="button"

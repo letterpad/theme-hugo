@@ -27,15 +27,18 @@ class Posts extends Component {
         document.body.classList.remove("posts-page");
     }
 
-    componentWillReceiveProps(nextProps) {
-        if (!nextProps.loading && this.state.loading) {
-            this.setState({ loading: false });
-            this.props.setHeroDetails({
+    static getDerivedStateFromProps(nextProps, prevState) {
+        if (!nextProps.loading && prevState.loading) {
+            nextProps.setHeroDetails({
                 image: nextProps.settings.banner.value,
                 title: nextProps.settings.site_title.value,
                 subTitle: nextProps.settings.site_tagline.value
             });
+            return {
+                loading: false
+            };
         }
+        return null;
     }
 
     async loadMore(num) {
