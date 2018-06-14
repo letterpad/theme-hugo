@@ -32,7 +32,7 @@ class SearchWrapper extends Component {
         const term = this.props.type;
         const offset = (num - 1) * config.itemsPerPage;
         if (term === "post") {
-            let result = await appoloClient.query({
+            let result = await appoloClient().query({
                 query: SEARCH_POSTS,
                 variables: {
                     query: JSON.stringify({
@@ -52,7 +52,7 @@ class SearchWrapper extends Component {
                 }
             });
         } else if (term === "category") {
-            let result = await appoloClient.query({
+            let result = await appoloClient().query({
                 query: SEARCH_POSTS_BY_TAXONOMY,
                 variables: {
                     type: "post_category",
@@ -75,7 +75,7 @@ class SearchWrapper extends Component {
                 }
             });
         } else if (term === "tag") {
-            let result = await appoloClient.query({
+            let result = await appoloClient().query({
                 query: SEARCH_POSTS_BY_TAXONOMY,
                 variables: {
                     type: "post_tag",
