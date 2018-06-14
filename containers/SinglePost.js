@@ -74,7 +74,7 @@ SinglePost.propTypes = {
     post: PropTypes.object,
     adjacentPosts: PropTypes.object,
     location: PropTypes.object,
-    settings: PropTypes.settings,
+    settings: PropTypes.object,
     adjPostsLoading: PropTypes.bool,
     loading: PropTypes.bool,
     setHeroDetails: PropTypes.func

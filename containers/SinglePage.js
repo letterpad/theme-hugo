@@ -72,7 +72,7 @@ SinglePage.propTypes = {
     page: PropTypes.object,
     loading: PropTypes.bool,
     location: PropTypes.object,
-    settings: PropTypes.settings,
+    settings: PropTypes.object,
     setHeroDetails: PropTypes.func
 };
 
