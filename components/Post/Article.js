@@ -5,14 +5,8 @@ import Disqus from "disqus-react";
 import { getTagsAndCategories } from "shared/util";
 
 export default class Article extends Component {
-    componentDidMount() {
-        setTimeout(() => {
-            document.querySelectorAll(".hljs").forEach(hljs.highlightBlock);
-        }, 10);
-    }
-
     render() {
-        const post = this.props.post;
+        const { post } = this.props;
 
         const disqusShortname = this.props.settings.disqus_id.value;
         const disqusConfig = {
@@ -21,7 +15,7 @@ export default class Article extends Component {
             title: post.title
         };
 
-        let { tags, categories } = getTagsAndCategories(post.taxonomies || []);
+        // let { tags, categories } = getTagsAndCategories(post.taxonomies || []);
 
         const content = post.mode == "markdown" ? post.mdPreview : post.body;
         const displayAuthor = JSON.parse(

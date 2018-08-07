@@ -1,5 +1,6 @@
 {
     "name": "Hugo",
+    "short_name": "hugo",
     "description":
         "A theme for writing classic blogs. Seo optimised, spa, disqus integrtion",
     "author": "Redsnow",

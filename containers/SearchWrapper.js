@@ -1,45 +1,50 @@
 import React, { Component } from "react";
+import { EventBusInstance } from "shared/eventBus";
 import ArticleListItem from "../components/Post/ArticleListItem";
 import appoloClient from "shared/apolloClient";
 import config from "../../../../config";
 import Loader from "../components/Loader";
-import { SEARCH_POSTS_BY_TAXONOMY, SEARCH_POSTS } from "shared/queries/Queries";
+import {
+    SEARCH_POSTS_BY_TAXONOMY,
+    SEARCH_POSTS_FUZY
+} from "shared/queries/Queries";
 import Paginate from "../components/Paginate";
 import OhSnap from "../components/OhSnap";
 import WithResize from "./Hoc/WithResize";
 
 class SearchWrapper extends Component {
-    constructor(props) {
-        super(props);
-        this.loadData = this.loadData.bind(this);
-        this.state = {
-            loading: true,
-            posts: [],
-            pageNo: {
-                category: 1,
-                tag: 1,
-                post: 1
-            },
-            total: 0
-        };
-    }
+    state = {
+        loading: true,
+        posts: [],
+        pageNo: {
+            category: 1,
+            tag: 1,
+            post: 1
+        },
+        total: 0,
+        isSearch: false
+    };
 
     componentDidMount() {
-        this.loadData();
+        let { type } = this.props;
+        let query = this.props.match.params.query;
+        EventBusInstance.on("SEARCH_QUERY", data => {
+            if (data.query == "") {
+                this.setState({ posts: [], total: 0, isSearch: false });
+                return;
+            }
+            this.loadData(data);
+        });
+        this.loadData({ type, query });
     }
 
-    async loadData(num = 1) {
-        const term = this.props.type;
+    loadData = async ({ term, query }) => {
         const offset = (num - 1) * config.itemsPerPage;
         if (term === "post") {
             let result = await appoloClient().query({
-                query: SEARCH_POSTS,
+                query: SEARCH_POSTS_FUZY,
                 variables: {
-                    query: JSON.stringify({
-                        $like: "%" + this.props.match.params.query + "%"
-                    }),
-                    limit: config.itemsPerPage,
-                    offset: offset
+                    query: query
                 }
             });
             this.setState({
@@ -95,29 +100,34 @@ class SearchWrapper extends Component {
                 }
             });
         }
-    }
+    };
 
     render() {
-        if (this.state.loading) {
+        if (this.state.loading && this.state.isSearch) {
             return <Loader />;
         }
-        if (this.state.posts.length === 0) {
-            return <OhSnap message="The search returned 0 resuts" />;
+
+        if (!this.state.isSearch) {
+            return (
+                <div className="post-row p-t-30 card content">
+                    Start your search...
+                </div>
+            );
+        }
+        if (posts.length === 0) {
+            return (
+                <OhSnap message="We couldn't find anything related to your search" />
+            );
         }
         const posts = this.state.posts.map((post, i) => (
             <ArticleListItem idx={i} key={i} post={post} displayType />
         ));
 
-        const type = this.props.type;
         return (
-            <div>
-                <Paginate
-                    data={posts}
-                    count={this.state.total}
-                    page={this.state.pageNo[type]}
-                    loadMore={this.loadData}
-                />
-            </div>
+            <section className="main post-list">
+                {posts}
+                <Paginate count={this.props.total} page={this.page} />
+            </section>
         );
     }
 }

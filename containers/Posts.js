@@ -6,7 +6,6 @@ import Paginate from "../components/Paginate";
 import OhSnap from "../components/OhSnap";
 import WithResize from "./Hoc/WithResize";
 import PostsData from "shared/data-connectors/PostsData";
-import { Link } from "react-router-dom";
 
 class Posts extends Component {
     constructor(props) {

@@ -37,7 +37,6 @@ const Paginate = ({ count, match }) => {
 
 Paginate.propTypes = {
     count: PropTypes.number,
-    page: PropTypes.number,
-    changePage: PropTypes.func
+    page: PropTypes.number
 };
 export default Paginate;

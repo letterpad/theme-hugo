@@ -5,6 +5,7 @@ import Loader from "../components/Loader";
 import SEO from "../components/SEO";
 import OhSnap from "../components/OhSnap";
 import SinglePageData from "shared/data-connectors/SinglePageData";
+import ThemeSettingsData from "shared/data-connectors/ThemeSettingsData";
 import moment from "moment";
 
 class SinglePage extends Component {
@@ -33,6 +34,7 @@ class SinglePage extends Component {
         if (this.props.loading) {
             return <Loader />;
         }
+
         if (!this.props.page.ok) {
             return (
                 <OhSnap message="Sorry, this page does not exist or might be restricted." />

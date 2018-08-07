@@ -51,7 +51,7 @@ class Header extends Component {
             <header className="site-header">
                 {logo && (
                     <img
-                        className="avatar"
+                        className="site_logo"
                         src={config.baseName + settings.site_logo.value}
                         alt="Logo"
                     />
