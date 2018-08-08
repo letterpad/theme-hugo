@@ -1,3 +1,10 @@
+.prism-dark {
+    background: rgb(46, 51, 68);
+    color: #fff;
+    font-size: 13px;
+    font-family: "Operator Mono", "Fira Code", Consolas, Monaco, "Andale Mono",
+        monospace;
+}
 code[class*="language-"],
 pre[class*="language-"] {
     color: #f8f8f2;
