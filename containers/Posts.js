@@ -83,12 +83,14 @@ class Posts extends Component {
                     </div>
                 )}
                 {articles}
-                <Paginate
-                    count={this.props.total}
-                    match={this.props.match}
-                    page={this.page}
-                    loadMore={this.loadMore}
-                />
+                <div className="pagination-wrapper">
+                    <Paginate
+                        count={this.props.total}
+                        match={this.props.match}
+                        page={this.page}
+                        loadMore={this.loadMore}
+                    />
+                </div>
             </section>
         );
     }

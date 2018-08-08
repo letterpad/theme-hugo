@@ -8,9 +8,11 @@ import {
     SEARCH_POSTS_BY_TAXONOMY,
     SEARCH_POSTS_FUZY
 } from "shared/queries/Queries";
-import Paginate from "../components/Paginate";
+// import Paginate from "../components/Paginate";
+import Paginate from "client/helpers/Paginate";
 import OhSnap from "../components/OhSnap";
 import WithResize from "./Hoc/WithResize";
+import SearchItem from "../components/SearchItem";
 
 class SearchWrapper extends Component {
     state = {
@@ -26,8 +28,6 @@ class SearchWrapper extends Component {
     };
 
     componentDidMount() {
-        let { type } = this.props;
-        let query = this.props.match.params.query;
         EventBusInstance.on("SEARCH_QUERY", data => {
             if (data.query == "") {
                 this.setState({ posts: [], total: 0, isSearch: false });
@@ -35,12 +35,21 @@ class SearchWrapper extends Component {
             }
             this.loadData(data);
         });
-        this.loadData({ type, query });
+        this.loadData({
+            type: this.props.type,
+            query: this.props.match.params.query
+        });
+        document.body.classList.add("posts", "search-page");
     }
-
-    loadData = async ({ term, query }) => {
+    componentWillUnmount() {
+        EventBusInstance.unregisterAllCallbacks();
+        document.body.classList.remove("posts", "posts-page");
+    }
+    loadData = async ({ type, query }) => {
+        if (!query) return;
+        let num = this.props.match.params.page_no || 1;
         const offset = (num - 1) * config.itemsPerPage;
-        if (term === "post") {
+        if (type === "post") {
             let result = await appoloClient().query({
                 query: SEARCH_POSTS_FUZY,
                 variables: {
@@ -49,19 +58,20 @@ class SearchWrapper extends Component {
             });
             this.setState({
                 loading: false,
-                posts: [...this.state.posts, ...result.data.posts.rows],
-                total: result.data.posts.count,
+                posts: [...result.data.search.posts],
+                total: result.data.search.count,
                 pageNo: {
                     ...this.state.pageNo,
                     post: num
-                }
+                },
+                isSearch: true
             });
-        } else if (term === "category") {
+        } else if (type === "category") {
             let result = await appoloClient().query({
                 query: SEARCH_POSTS_BY_TAXONOMY,
                 variables: {
                     type: "post_category",
-                    slug: this.props.match.params.query,
+                    slug: query,
                     postType: "post",
                     limit: config.itemsPerPage,
                     offset: offset
@@ -77,14 +87,15 @@ class SearchWrapper extends Component {
                 pageNo: {
                     ...this.state.pageNo,
                     category: num
-                }
+                },
+                isSearch: false
             });
-        } else if (term === "tag") {
+        } else if (type === "tag") {
             let result = await appoloClient().query({
                 query: SEARCH_POSTS_BY_TAXONOMY,
                 variables: {
                     type: "post_tag",
-                    query: this.props.match.params.query,
+                    slug: query,
                     postType: "post",
                     limit: config.itemsPerPage,
                     offset: offset
@@ -92,12 +103,13 @@ class SearchWrapper extends Component {
             });
             this.setState({
                 loading: false,
-                posts: result.data.postsByTaxSlug.posts,
+                posts: [...result.data.postsByTaxSlug.posts],
                 total: result.data.postsByTaxSlug.count,
                 pageNo: {
                     ...this.state.pageNo,
                     tag: num
-                }
+                },
+                isSearch: false
             });
         }
     };
@@ -107,9 +119,14 @@ class SearchWrapper extends Component {
             return <Loader />;
         }
 
-        if (!this.state.isSearch) {
+        const posts = this.state.posts.map((post, i) => {
+            let href = `/${this.props.type}/${post.slug}`;
+            return <SearchItem key={i} post={post} href={href} />;
+        });
+
+        if (!this.state.isSearch && posts.length === 0) {
             return (
-                <div className="post-row p-t-30 card content">
+                <div className="main post-list p-t-30">
                     Start your search...
                 </div>
             );
@@ -119,14 +136,17 @@ class SearchWrapper extends Component {
                 <OhSnap message="We couldn't find anything related to your search" />
             );
         }
-        const posts = this.state.posts.map((post, i) => (
-            <ArticleListItem idx={i} key={i} post={post} displayType />
-        ));
-
+        const { type } = this.props;
         return (
             <section className="main post-list">
                 {posts}
-                <Paginate count={this.props.total} page={this.page} />
+                <div className="pagination-wrapper">
+                    <Paginate
+                        count={this.state.total}
+                        page={this.state.pageNo[type]}
+                        match={this.props.match}
+                    />
+                </div>
             </section>
         );
     }

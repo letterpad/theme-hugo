@@ -1,6 +1,7 @@
 import React, { Component, Fragment } from "react";
 import { NavLink } from "react-router-dom";
 import config from "config";
+import Search from "client/helpers/Search";
 
 const SocialIcons = ({ settings }) => {
     var a = Object.keys(settings)
@@ -72,6 +73,7 @@ class Header extends Component {
                         }
                     />
                 </button>
+                <Search history={this.props.router.history} />
                 <nav className={"site-menu " + menucollapsedClass}>
                     <h2 className="offscreen">Main Menu</h2>
                     <ul className="menu-list">

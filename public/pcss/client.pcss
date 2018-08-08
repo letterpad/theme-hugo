@@ -27,6 +27,9 @@ a {
     transition: 0.3s opacity linear;
     text-decoration: none;
 }
+input:focus {
+    outline: none;
+}
 a:focus,
 a:hover {
     color: #242424;
@@ -79,7 +82,6 @@ a:hover {
     position: relative;
     margin-left: 20rem;
     padding: 1rem 2rem;
-    max-width: 70rem;
     min-height: 100vh;
     box-sizing: border-box;
     border-left: 1px solid rgba(0, 0, 0, 0.09);
@@ -164,9 +166,9 @@ a:hover {
     }
 }
 .site_logo {
-    margin-top: 3rem;
+    margin-top: 2rem;
     max-width: 10rem;
-    margin-bottom: 80px;
+    margin-bottom: 2rem;
     max-height: 100px;
 }
 
@@ -174,7 +176,7 @@ a:hover {
     display: none;
 }
 @media screen and (max-width: 800px) {
-    .avatar {
+    .site_logo {
         position: absolute;
         top: 1rem;
         left: 1rem;
@@ -297,6 +299,10 @@ a:hover {
 }
 .hero-banner {
     margin: -16px -33px 33px;
+    img {
+        max-height: 600px;
+        object-fit: cover;
+    }
 }
 @media screen and (max-width: 800px) {
     .hero-banner {
@@ -966,8 +972,11 @@ table.is-striped tbody tr:not(.is-selected):nth-child(even):hover {
 .posts-page {
     article {
         display: flex;
+        max-width: 70rem;
+        margin: auto;
         margin-bottom: 40px;
         border-top: none;
+
         .post-details {
             display: flex;
             flex-direction: column;
@@ -1030,31 +1039,44 @@ table.is-striped tbody tr:not(.is-selected):nth-child(even):hover {
     }
 }
 
-ul.pagination {
-    display: inline-block;
-    padding: 0;
-    margin: 0;
-
-    li {
-        display: inline;
-        a {
-            color: black;
-            float: left;
-            padding: 8px 16px;
-            text-decoration: none;
-            transition: background-color 0.3s;
-            border: 1px solid #ddd;
-        }
-        a.active {
-            background-color: #000000;
-            color: #eae8e8;
-            border: 1px solid #000000;
-        }
-        a:hover:not(.active) {
-            background-color: #ddd;
-        }
+.search-box {
+    input.form-control {
+        border: 1px solid #333;
+        background: transparent;
+        color: #fff;
+        padding: 6px 10px;
+        width: 80%;
     }
-    li:not(:first-child) a {
-        border-left: none;
+}
+.pagination-wrapper {
+    text-align: center;
+    margin-top: 80px;
+    ul.pagination {
+        display: inline-block;
+        padding: 0;
+        margin: 0;
+
+        li {
+            display: inline;
+            a {
+                color: black;
+                float: left;
+                padding: 2px 12px;
+                text-decoration: none;
+                transition: background-color 0.3s;
+                border: 1px solid #ddd;
+            }
+            a.active {
+                background-color: #000000;
+                color: #eae8e8;
+                border: 1px solid #000000;
+            }
+            a:hover:not(.active) {
+                background-color: #ddd;
+            }
+        }
+        li:not(:first-child) a {
+            border-left: none;
+        }
     }
 }
