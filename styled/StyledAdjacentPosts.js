@@ -1,7 +1,6 @@
-/*-----------------------------------------
- | [Adjacent Posts]
-*/
-.adjacent-posts {
+import styled from "styled-components";
+
+export default styled.div`
     display: flex;
     flex-direction: row;
     justify-content: space-between;
@@ -12,7 +11,7 @@
     .adjacent-post-item {
         label {
             cursor: pointer;
-            color: #000;
+            color: var(--color-text-primary);
         }
         display: flex;
         flex-direction: column;
@@ -27,4 +26,4 @@
             text-align: right;
         }
     }
-}
+`;

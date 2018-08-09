@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import AdjacentPostsData from "shared/data-connectors/AdjacentPostsData";
 import PropTypes from "prop-types";
+import StyledAdjacentPosts from "../../styled/StyledAdjacentPosts";
 
 const Post = ({ post, label, direction }) => {
     return (
@@ -34,10 +35,10 @@ const AdjacentPosts = ({ adjacentPosts }) => {
         ""
     );
     return (
-        <div className="adjacent-posts">
+        <StyledAdjacentPosts className="adjacent-posts">
             {prev}
             {next}
-        </div>
+        </StyledAdjacentPosts>
     );
 };
 

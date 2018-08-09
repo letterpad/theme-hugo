@@ -1,7 +1,11 @@
-import React, { Component, Fragment } from "react";
+import React, { Component } from "react";
 import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import config from "config";
 import Search from "client/helpers/Search";
+import SiteHeader from "../styled/SiteHeader";
+import { SiteLogo } from "../styled/common";
+import SocialIconsStyled from "../styled/SocialIcons";
 
 const SocialIcons = ({ settings }) => {
     var a = Object.keys(settings)
@@ -49,18 +53,30 @@ class Header extends Component {
         const logo = settings.site_logo.value || null;
 
         return (
-            <header className="site-header">
+            <SiteHeader className="site-header">
                 {logo && (
-                    <img
-                        className="site_logo"
-                        src={config.baseName + settings.site_logo.value}
-                        alt="Logo"
-                    />
+                    <Link to="/">
+                        <SiteLogo>
+                            <img
+                                src={config.baseName + settings.site_logo.value}
+                                alt="Logo"
+                                className="site_logo"
+                            />
+                        </SiteLogo>
+                    </Link>
                 )}
-                <div className={!logo ? "no-logo" : "with-logo"}>
-                    <h1 className="title">{settings.site_title.value}</h1>
-                    <p className="subtitle">{settings.site_tagline.value}</p>
-                </div>
+                {!logo && (
+                    <div>
+                        <Link to="/">
+                            <h1 className="title">
+                                {settings.site_title.value}
+                            </h1>
+                        </Link>
+                        <p className="subtitle">
+                            {settings.site_tagline.value}
+                        </p>
+                    </div>
+                )}
                 <button
                     className="menu-toggle"
                     type="button"
@@ -102,13 +118,15 @@ class Header extends Component {
                             })}
                     </ul>
                 </nav>
-                <nav className={"social-menu " + menucollapsedClass}>
+                <SocialIconsStyled
+                    className={"social-menu " + menucollapsedClass}
+                >
                     <h2 className="offscreen">Social Networks</h2>
                     <ul className="social-list">
                         <SocialIcons settings={settings} />
                     </ul>
-                </nav>
-            </header>
+                </SocialIconsStyled>
+            </SiteHeader>
         );
     }
 }

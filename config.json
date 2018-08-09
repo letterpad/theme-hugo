@@ -1,8 +1,7 @@
 {
     "name": "Hugo",
     "short_name": "hugo",
-    "description":
-        "A theme for writing classic blogs. Seo optimised, spa, disqus integrtion",
-    "author": "Redsnow",
-    "thumbnail": "/images/thumbnail.png"
+    "description": "Official theme of Letterpad. Seo optimised, spa, disqus integrtion, light/dark mode, blazzing fast.",
+    "author": "Abhishek Saha",
+    "thumbnail": "/images/thumbnail.jpg"
 }

@@ -2,12 +2,45 @@ import React, { Component } from "react";
 import moment from "moment";
 import config from "config";
 import Disqus from "disqus-react";
-import { getTagsAndCategories } from "shared/util";
+import styled from "styled-components";
+import { PostTitle, PostMeta, StyledTags } from "../../styled/common";
+import { Link } from "react-router-dom";
+import StyledAuthor from "../../styled/StyledAuthor";
+import HeroImage from "../HeroImage";
 
+const StyledArticle = styled.article`
+    position: relative;
+    line-height: 1.8;
+    word-wrap: break-word;
+    word-break: break-word;
+    flex: 1;
+
+    img {
+        display: block;
+        width: 100%;
+        margin: 2rem auto;
+        max-width: 100%;
+        box-shadow: 0px 0px 18px 8px rgba(0, 0, 0, 0.12);
+
+        @media screen and (max-width: 800px) {
+            box-shadow: none;
+        }
+    }
+
+    blockquote {
+        border-left: 5px solid rgba(var(--color-accent), 1);
+    }
+`;
+const ArticleHolder = styled.div`
+    max-width: 768px;
+    width: 100%;
+    margin: auto;
+`;
 export default class Article extends Component {
     render() {
+        const tags = [];
+        const categories = [];
         const { post } = this.props;
-
         const disqusShortname = this.props.settings.disqus_id.value;
         const disqusConfig = {
             url: post.url,
@@ -15,65 +48,88 @@ export default class Article extends Component {
             title: post.title
         };
 
-        // let { tags, categories } = getTagsAndCategories(post.taxonomies || []);
+        post.taxonomies.forEach((taxonomy, i) => {
+            if (taxonomy.type === "post_category") {
+                categories.push(
+                    <Link key={i} to={"/category/" + taxonomy.slug}>
+                        {taxonomy.name}
+                    </Link>
+                );
+            } else {
+                tags.push(
+                    <Link key={i} to={"/tag/" + taxonomy.slug}>
+                        #{taxonomy.name}
+                    </Link>
+                );
+            }
+        });
 
-        const content = post.mode == "markdown" ? post.mdPreview : post.body;
+        const content = post.body;
         const displayAuthor = JSON.parse(
             this.props.settings.displayAuthorInfo.value
         ); // convert "true" to true
         return (
             <section className="main post-detail">
-                {post.cover_image.length > 0 && (
-                    <div className="hero-banner">
-                        <img
-                            width="100%"
-                            src={config.baseName + post.cover_image}
+                <HeroImage
+                    image={config.baseName + post.cover_image}
+                    display={post.cover_image.length > 0}
+                />
+                <ArticleHolder>
+                    <header className="post-header">
+                        <PostTitle large className="post-title">
+                            {post.title}
+                        </PostTitle>
+                        <PostMeta className="post-meta">
+                            {this.props.post.author.fname} ·{" "}
+                            {moment(new Date(post.created_at)).format("LL")} · 4
+                            min read ·{" "}
+                            <StyledTags className="tags">
+                                {categories}
+                            </StyledTags>
+                        </PostMeta>
+                    </header>
+                    <StyledArticle className="post-content">
+                        <p
+                            dangerouslySetInnerHTML={{
+                                __html: content
+                            }}
                         />
-                    </div>
-                )}
-                <header className="post-header">
-                    <h1 className="post-title">{post.title}</h1>
-                    <p className="post-meta">
-                        {this.props.post.author.fname} ·{" "}
-                        {moment(new Date(post.created_at)).format("LL")} · 4 min
-                        read
-                    </p>
-                </header>
-                <article className="post-content ql-editor fs-medium">
-                    <p
-                        dangerouslySetInnerHTML={{
-                            __html: content
-                        }}
-                    />
-                </article>
-                {displayAuthor &&
-                    post.type == "post" && (
-                        <div className="author-info">
-                            <div className="author-avatar">
-                                <img
-                                    src={config.baseName + post.author.avatar}
+                    </StyledArticle>
+                    {tags.length > 0 && (
+                        <StyledTags className="tags">{tags}</StyledTags>
+                    )}
+                    {displayAuthor &&
+                        post.type == "post" && (
+                            <StyledAuthor className="author-info">
+                                <div className="author-avatar">
+                                    <img
+                                        src={
+                                            config.baseName + post.author.avatar
+                                        }
+                                    />
+                                </div>
+                                <div className="author-details">
+                                    <div className="author-name">
+                                        {post.author.fname} {post.author.lname}
+                                    </div>
+                                    <div className="author-bio">
+                                        {post.author.bio}
+                                    </div>
+                                </div>
+                            </StyledAuthor>
+                        )}
+                    {this.props.adjacentPosts}
+
+                    {disqusShortname &&
+                        post.type == "post" && (
+                            <div id="disqus_thread_parent">
+                                <Disqus.DiscussionEmbed
+                                    shortname={disqusShortname}
+                                    config={disqusConfig}
                                 />
                             </div>
-                            <div className="author-details">
-                                <div className="author-name">
-                                    {post.author.fname} {post.author.lname}
-                                </div>
-                                <div className="author-bio">
-                                    {post.author.bio}
-                                </div>
-                            </div>
-                        </div>
-                    )}
-                {this.props.adjacentPosts}
-                {disqusShortname &&
-                    post.type == "post" && (
-                        <div id="disqus_thread_parent">
-                            <Disqus.DiscussionEmbed
-                                shortname={disqusShortname}
-                                config={disqusConfig}
-                            />
-                        </div>
-                    )}
+                        )}
+                </ArticleHolder>
             </section>
         );
     }

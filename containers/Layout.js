@@ -1,13 +1,44 @@
 import React, { Component } from "react";
 import Header from "../components/Header";
 import config from "config";
+import styled from "styled-components";
 
 require("../public/pcss/client.pcss");
+
+const darkTheme = `
+    --color-text-primary: #dfdfdf;
+    --color-menu-link: #fff;
+    --color-border: #3c3c3c;
+    --color-accent: 70,183, 70;
+    --color-headings: #fff;
+    --bg-article-item: 30, 34, 50;
+    --bg-content: 25, 28, 39;
+    --bg-sidebar: 25, 28, 39;
+`;
+
+const lightTheme = `
+    --color-text-primary: #333;
+    --color-menu-link: #fff;
+    --color-border: #333;
+    --color-accent: 20, 181, 239;
+    --color-headings: #000;
+    --bg-article-item: 240, 240, 240;
+    --bg-content: 255, 255, 255;
+    --bg-sidebar: 25, 28, 39;
+`;
+
+const CSSVariables = styled.div`
+    ${props => (props.dark ? darkTheme : lightTheme)};
+`;
 
 export default function Layout(Element, props) {
     const name = Element.name;
     const settings = props.settings;
 
+    const StyledElement = styled.div`
+        background: rgba(var(--bg-content), 1);
+        color: var(--color-text-primary);
+    `;
     return class extends Component {
         state = {
             image: config.baseName + settings.banner.value,
@@ -23,43 +54,26 @@ export default function Layout(Element, props) {
 
         render() {
             const _props = { ...this.props, ...props, settings };
-            const styles = {
-                hero: {
-                    backgroundImage: `url(${this.state.image})`
-                }
-            };
-            const Hero = ({ display }) => {
-                if (!display || name == "SearchWrapper") return null;
-                return (
-                    <header style={styles.hero} className="hero">
-                        <div className="site-header-content">
-                            <h1 className="site-title">{this.state.title}</h1>
-                            <h2 className="site-description">
-                                {this.state.subTitle}
-                            </h2>
-                        </div>
-                    </header>
-                );
+            const themeColor = settings.themeConfig["theme-color"] || "dark";
+            const theme = {
+                [themeColor.toLowerCase()]: true
             };
             return (
-                <div>
-                    <div className="suspension">
-                        <a title="Go to top" className="to-top is-hide">
-                            <span className="icon icon-up" />
-                        </a>
-                    </div>
+                <CSSVariables {...theme}>
                     <Header settings={settings} router={{ ...this.props }} />
-
-                    <Hero display={false} />
-
-                    <Element {..._props} setHeroDetails={this.setHeroDetails} />
+                    <StyledElement>
+                        <Element
+                            {..._props}
+                            setHeroDetails={this.setHeroDetails}
+                        />
+                    </StyledElement>
                     <footer
                         className="site-footer"
                         dangerouslySetInnerHTML={{
                             __html: settings.site_footer.value
                         }}
                     />
-                </div>
+                </CSSVariables>
             );
         }
     };

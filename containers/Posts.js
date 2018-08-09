@@ -6,6 +6,8 @@ import Paginate from "../components/Paginate";
 import OhSnap from "../components/OhSnap";
 import WithResize from "./Hoc/WithResize";
 import PostsData from "shared/data-connectors/PostsData";
+import Pagination from "../styled/Pagination";
+import HeroImage from "../components/HeroImage";
 
 class Posts extends Component {
     constructor(props) {
@@ -71,26 +73,19 @@ class Posts extends Component {
 
         return (
             <section className="main post-list">
-                {this.props.settings.banner.value.length > 0 && (
-                    <div className="hero-banner">
-                        <img
-                            width="100%"
-                            src={
-                                config.baseName +
-                                this.props.settings.banner.value
-                            }
-                        />
-                    </div>
-                )}
+                <HeroImage
+                    image={config.baseName + this.props.settings.banner.value}
+                    display={this.props.settings.banner.value.length > 0}
+                />
                 {articles}
-                <div className="pagination-wrapper">
+                <Pagination className="pagination-wrapper">
                     <Paginate
                         count={this.props.total}
                         match={this.props.match}
                         page={this.page}
                         loadMore={this.loadMore}
                     />
-                </div>
+                </Pagination>
             </section>
         );
     }

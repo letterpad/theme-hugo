@@ -13,6 +13,7 @@ import Paginate from "client/helpers/Paginate";
 import OhSnap from "../components/OhSnap";
 import WithResize from "./Hoc/WithResize";
 import SearchItem from "../components/SearchItem";
+import Pagination from "../styled/Pagination";
 
 class SearchWrapper extends Component {
     state = {
@@ -126,8 +127,8 @@ class SearchWrapper extends Component {
 
         if (!this.state.isSearch && posts.length === 0) {
             return (
-                <div className="main post-list p-t-30">
-                    Start your search...
+                <div className="main post-list">
+                    <p>Start your search..</p>
                 </div>
             );
         }
@@ -140,13 +141,13 @@ class SearchWrapper extends Component {
         return (
             <section className="main post-list">
                 {posts}
-                <div className="pagination-wrapper">
+                <Pagination className="pagination-wrapper">
                     <Paginate
                         count={this.state.total}
                         page={this.state.pageNo[type]}
                         match={this.props.match}
                     />
-                </div>
+                </Pagination>
             </section>
         );
     }

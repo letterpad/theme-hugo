@@ -3,6 +3,8 @@ import { Link } from "react-router-dom";
 import moment from "moment";
 import config from "config";
 import LazyImage from "../../../../helpers/LazyImage";
+import { PostTitle, PostMeta, StyledReadMore } from "../../styled/common";
+import StyledArticleItem from "../../styled/StyledArticleItem";
 const readingTime = require("reading-time");
 
 class ArticleListItem extends Component {
@@ -12,29 +14,29 @@ class ArticleListItem extends Component {
         const content = post.mode == "markdown" ? post.mdPreview : post.body;
 
         return (
-            <article className="post-entry">
+            <StyledArticleItem className="post-entry">
                 <div className="post-details">
                     <header className="post-header">
-                        <h3 className="post-title">
+                        <PostTitle className="post-title">
                             <Link className="post-link" to={href}>
                                 {post.title}
                             </Link>
-                        </h3>
-                        <p className="post-meta">
+                        </PostTitle>
+                        <PostMeta className="post-meta">
                             {post.author.fname} {post.author.lname} ·{" "}
                             {moment(new Date(post.created_at)).format("LL")}·{" "}
                             {readingTime(content).text}
-                        </p>
+                        </PostMeta>
                     </header>
                     <p className="post-summary">{post.excerpt}</p>
                     <footer className="post-footer">
-                        <Link className="read-more" to={href}>
+                        <StyledReadMore className="read-more" to={href}>
                             Read More →
-                        </Link>
+                        </StyledReadMore>
                     </footer>
                 </div>
                 {post.cover_image != "" && (
-                    <div className="post-image">
+                    <div className="post-image-box">
                         <Link className="post-link" to={href}>
                             <LazyImage
                                 src={config.baseName + post.cover_image}
@@ -43,7 +45,7 @@ class ArticleListItem extends Component {
                         </Link>
                     </div>
                 )}
-            </article>
+            </StyledArticleItem>
         );
     }
 }

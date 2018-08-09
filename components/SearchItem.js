@@ -1,28 +1,46 @@
 import React from "react";
 import moment from "moment";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
+import { PostTitle, PostMeta, StyledReadMore } from "../styled/common";
+const StyledArticle = styled.article`
+    background: rgba(var(--bg-article-item));
+    border: 1px solid rgba(var(--bg-sidebar), 0.05);
+    border-radius: 2px;
+    padding: 1px 24px 24px;
+    margin-bottom: 24px;
+    a {
+        color: rgba(var(--color-accent));
+        &.post-link {
+            color: var(--color-text-primary);
+            &:hover {
+                color: rgba(var(--color-accent));
+            }
+        }
+    }
+`;
 
 export default ({ post, href }) => {
     return (
-        <article className="post-entry">
+        <StyledArticle className="post-entry">
             <div className="post-details">
                 <header className="post-header">
-                    <h3 className="post-title">
+                    <PostTitle medium className="post-title">
                         <Link className="post-link" to={href}>
                             {post.title}
                         </Link>
-                    </h3>
-                    <p className="post-meta">
-                        {moment(new Date(post.published_at)).format("LL")}·{" "}
-                    </p>
+                    </PostTitle>
+                    <PostMeta className="post-meta">
+                        {moment(new Date(post.published_at)).format("LL")}
+                    </PostMeta>
                 </header>
                 <p className="post-summary">{post.excerpt}</p>
                 <footer className="post-footer">
-                    <Link className="read-more" to={href}>
+                    <StyledReadMore className="read-more" to={href}>
                         Read More →
-                    </Link>
+                    </StyledReadMore>
                 </footer>
             </div>
-        </article>
+        </StyledArticle>
     );
 };
