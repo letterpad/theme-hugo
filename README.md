@@ -12,13 +12,16 @@ This is the official default theme of Letterpad.
 ## Screenshots
 
 Full Width Layout in dark mode
-![Dark](public/images/screenshots/dark-full-width.jpg)
+
+<img src="public/images/screenshots/dark-full-width.jpg" width="500">
 
 Layout in light mode (iPad)
-![Dark](public/images/screenshots/light-home.jpg)
+
+<img src="public/images/screenshots/light-home.jpg" width="500">
 
 Article Page
-![Dark](public/images/screenshots/dark-single-post.jpg)
+
+<img src="public/images/screenshots/dark-single-post.jpg" width="500">
 
 ## How to install ?
 
