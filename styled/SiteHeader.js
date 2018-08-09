@@ -55,4 +55,21 @@ export default styled.header`
             display: block;
         }
     }
+
+    .search-box {
+        input.form-control {
+            border: none;
+            border-bottom: 1px solid #333;
+            background: transparent;
+            color: var(--color-text-primary);
+            padding: 6px 0px;
+            width: 80%;
+            font-size: 13px;
+        }
+        @media screen and (max-width: 800px) {
+            input.form-control {
+                text-align: center;
+            }
+        }
+    }
 `;

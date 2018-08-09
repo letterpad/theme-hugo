@@ -1,5 +1,6 @@
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import Search from "client/helpers/Search";
 
 export const PostTitle = styled.h2`
     font-size: ${p => (p.large ? 2 : 1.5)}rem;
