@@ -6,6 +6,7 @@ import Search from "client/helpers/Search";
 import SiteHeader from "../styled/SiteHeader";
 import { SiteLogo } from "../styled/common";
 import SocialIconsStyled from "../styled/SocialIcons";
+import StyledMenu from "../styled/StyledMenu";
 
 const SocialIcons = ({ settings }) => {
     var a = Object.keys(settings)
@@ -90,8 +91,7 @@ class Header extends Component {
                     />
                 </button>
                 <Search history={this.props.router.history} />
-                <nav className={"site-menu " + menucollapsedClass}>
-                    <h2 className="offscreen">Main Menu</h2>
+                <StyledMenu className={"site-menu " + menucollapsedClass}>
                     <ul className="menu-list">
                         {menu
                             .filter(item => item.type !== "label")
@@ -117,7 +117,7 @@ class Header extends Component {
                                 );
                             })}
                     </ul>
-                </nav>
+                </StyledMenu>
                 <SocialIconsStyled
                     className={"social-menu " + menucollapsedClass}
                 >

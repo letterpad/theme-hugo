@@ -3,6 +3,7 @@ import styled from "styled-components";
 
 const StyledHero = styled.div`
     margin: -16px -33px 33px;
+    height: 600px;
     img {
         max-height: 600px;
         object-fit: cover;
