@@ -69,7 +69,7 @@ export default class Article extends Component {
             this.props.settings.displayAuthorInfo.value
         ); // convert "true" to true
         return (
-            <section className="main post-detail">
+            <section className="post-detail">
                 <HeroImage
                     image={config.baseName + post.cover_image}
                     display={post.cover_image.length > 0}

@@ -9,27 +9,6 @@ import ThemeSettingsData from "shared/data-connectors/ThemeSettingsData";
 import moment from "moment";
 
 class SinglePage extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true
-        };
-    }
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (!nextProps.loading && prevState.loading) {
-            nextProps.setHeroDetails({
-                image: nextProps.settings.banner.value,
-                title: nextProps.settings.site_title.value,
-                subTitle: moment(new Date(nextProps.page.created_at)).format(
-                    "LL"
-                )
-            });
-            return {
-                loading: false
-            };
-        }
-        return null;
-    }
     render() {
         if (this.props.loading) {
             return <Loader />;

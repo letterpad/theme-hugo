@@ -8,10 +8,8 @@ import {
     SEARCH_POSTS_BY_TAXONOMY,
     SEARCH_POSTS_FUZY
 } from "shared/queries/Queries";
-// import Paginate from "../components/Paginate";
 import Paginate from "client/helpers/Paginate";
 import OhSnap from "../components/OhSnap";
-import WithResize from "./Hoc/WithResize";
 import SearchItem from "../components/SearchItem";
 import Pagination from "../styled/Pagination";
 
@@ -127,7 +125,7 @@ class SearchWrapper extends Component {
 
         if (!this.state.isSearch && posts.length === 0) {
             return (
-                <div className="main post-list">
+                <div className="post-list">
                     <p>Start your search..</p>
                 </div>
             );
@@ -139,7 +137,7 @@ class SearchWrapper extends Component {
         }
         const { type } = this.props;
         return (
-            <section className="main post-list">
+            <section className="post-list">
                 {posts}
                 <Pagination className="pagination-wrapper">
                     <Paginate
@@ -152,4 +150,4 @@ class SearchWrapper extends Component {
         );
     }
 }
-export default WithResize(SearchWrapper);
+export default SearchWrapper;

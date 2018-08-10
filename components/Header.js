@@ -7,7 +7,26 @@ import SiteHeader from "../styled/SiteHeader";
 import { SiteLogo } from "../styled/common";
 import SocialIconsStyled from "../styled/SocialIcons";
 import StyledMenu from "../styled/StyledMenu";
+import styled from "styled-components";
 
+const StyledThemeChange = styled.div`
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    margin-bottom: 30px;
+    border-radius: 4px;
+    div {
+        width: 20px;
+        height: 20px;
+        cursor: pointer;
+        &.night {
+            background: #000;
+        }
+        &.day {
+            background: #fff;
+        }
+    }
+`;
 const SocialIcons = ({ settings }) => {
     var a = Object.keys(settings)
         // get all the settings with start with "social_"
@@ -48,7 +67,7 @@ class Header extends Component {
         });
     }
     render() {
-        const settings = this.props.settings;
+        const { settings, switchTheme } = this.props;
         const menu = JSON.parse(settings.menu.value);
         const menucollapsedClass = this.state.menuOpen ? "" : "collapsed";
         const logo = settings.site_logo.value || null;
@@ -90,6 +109,13 @@ class Header extends Component {
                         }
                     />
                 </button>
+                <StyledThemeChange>
+                    <div
+                        className="night"
+                        onClick={() => switchTheme("dark")}
+                    />
+                    <div className="day" onClick={() => switchTheme("light")} />
+                </StyledThemeChange>
                 <Search history={this.props.router.history} />
                 <StyledMenu className={"site-menu " + menucollapsedClass}>
                     <ul className="menu-list">

@@ -5,7 +5,7 @@ import config from "config";
 export default class NotFound extends Component {
     render() {
         return (
-            <section className="main">
+            <section>
                 <div className="block-404">
                     <div className="image-404">
                         <img src={config.baseName + "/hugo/images/robot.png"} />

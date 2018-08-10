@@ -27,42 +27,43 @@ const lightTheme = `
     --bg-content: 255, 255, 255;
     --bg-sidebar: 25, 28, 39;
 `;
-
 const CSSVariables = styled.div`
     ${props => (props.dark ? darkTheme : lightTheme)};
 `;
 
 export default function Layout(Element, props) {
-    const name = Element.name;
     const settings = props.settings;
 
     return class extends Component {
         state = {
-            image: config.baseName + settings.banner.value,
-            title: settings.site_title.value,
-            subTitle: settings.site_tagline.value
+            theme: (settings.themeConfig["theme-color"] || "dark").toLowerCase()
         };
 
-        setHeroDetails = data => {
-            if (["Home", "Posts"].indexOf(name) >= 0) {
-                this.setState(data);
+        componentDidMount() {
+            if (localStorage.theme) {
+                this.setState({ theme: localStorage.theme });
             }
-        };
+        }
 
+        switchTheme = theme => {
+            this.setState({ theme });
+            localStorage.theme = theme;
+        };
         render() {
             const _props = { ...this.props, ...props, settings };
-            const themeColor = settings.themeConfig["theme-color"] || "dark";
             const theme = {
-                [themeColor.toLowerCase()]: true
+                [this.state.theme]: true
             };
             return (
                 <CSSVariables {...theme}>
-                    <Header settings={settings} router={{ ...this.props }} />
+                    <Header
+                        settings={settings}
+                        router={{ ...this.props }}
+                        switchTheme={this.switchTheme}
+                    />
+
                     <StyledMain>
-                        <Element
-                            {..._props}
-                            setHeroDetails={this.setHeroDetails}
-                        />
+                        <Element {..._props} />
                     </StyledMain>
                     <footer
                         className="site-footer"

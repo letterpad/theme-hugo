@@ -11,27 +11,6 @@ import AdjacentPosts from "../components/Post/AdjacentPosts";
 import { getTagsAndCategories } from "shared/util";
 
 class SinglePost extends Component {
-    constructor(props) {
-        super(props);
-        this.state = {
-            loading: true
-        };
-    }
-    static getDerivedStateFromProps(nextProps, prevState) {
-        if (!nextProps.loading && prevState.loading) {
-            nextProps.setHeroDetails({
-                image: nextProps.settings.banner.value,
-                title: nextProps.settings.site_title.value,
-                subTitle: moment(new Date(nextProps.post.created_at)).format(
-                    "LL"
-                )
-            });
-            return {
-                loading: false
-            };
-        }
-        return null;
-    }
     render() {
         if (this.props.loading || this.props.adjPostsLoading) {
             return <Loader />;
