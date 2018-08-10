@@ -36,7 +36,9 @@ export default function Layout(Element, props) {
 
     return class extends Component {
         state = {
-            theme: (settings.themeConfig["theme-color"] || "dark").toLowerCase()
+            theme: (
+                settings.themeConfig["theme-color"] || "light"
+            ).toLowerCase()
         };
 
         componentDidMount() {
