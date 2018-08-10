@@ -34,18 +34,19 @@ const CSSVariables = styled.div`
 export default function Layout(Element, props) {
     const settings = props.settings;
 
+    let localStorageTheme = null;
+    if (typeof localStorage !== "undefined") {
+        localStorageTheme = localStorage.theme;
+    }
+
     return class extends Component {
         state = {
             theme: (
-                settings.themeConfig["theme-color"] || "light"
+                localStorageTheme ||
+                settings.themeConfig["theme-color"] ||
+                "light"
             ).toLowerCase()
         };
-
-        componentDidMount() {
-            if (localStorage.theme) {
-                this.setState({ theme: localStorage.theme });
-            }
-        }
 
         switchTheme = theme => {
             this.setState({ theme });

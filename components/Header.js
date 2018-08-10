@@ -19,8 +19,9 @@ const StyledThemeChange = styled.div`
         width: 20px;
         height: 20px;
         cursor: pointer;
+        margin-right: 8px;
         &.night {
-            background: #000;
+            background: #333;
         }
         &.day {
             background: #fff;
@@ -109,13 +110,7 @@ class Header extends Component {
                         }
                     />
                 </button>
-                <StyledThemeChange>
-                    <div
-                        className="night"
-                        onClick={() => switchTheme("dark")}
-                    />
-                    <div className="day" onClick={() => switchTheme("light")} />
-                </StyledThemeChange>
+
                 <Search history={this.props.router.history} />
                 <StyledMenu className={"site-menu " + menucollapsedClass}>
                     <ul className="menu-list">
@@ -144,9 +139,20 @@ class Header extends Component {
                             })}
                     </ul>
                 </StyledMenu>
+
                 <SocialIconsStyled
                     className={"social-menu " + menucollapsedClass}
                 >
+                    <StyledThemeChange>
+                        <div
+                            className="night"
+                            onClick={() => switchTheme("dark")}
+                        />
+                        <div
+                            className="day"
+                            onClick={() => switchTheme("light")}
+                        />
+                    </StyledThemeChange>
                     <h2 className="offscreen">Social Networks</h2>
                     <ul className="social-list">
                         <SocialIcons settings={settings} />

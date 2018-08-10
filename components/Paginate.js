@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 
 const Paginate = ({ count, match }) => {
     const totalPages = Array.from(Array(Math.ceil(count / 6)));
-
+    if (totalPages.length == 1) return null;
     const pages = totalPages.map((_, i) => {
         const page = i + 1;
         let to = "/";

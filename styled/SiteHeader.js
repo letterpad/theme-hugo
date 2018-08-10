@@ -57,7 +57,9 @@ export default styled.header`
     }
 
     .search-box {
+        margin-bottom: 40px;
         input.form-control {
+            color: #fff;
             border: none;
             border-bottom: 1px solid #333;
             background: transparent;
