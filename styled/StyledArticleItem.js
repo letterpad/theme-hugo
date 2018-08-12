@@ -19,7 +19,8 @@ export default styled.article`
         display: flex;
         flex-direction: column;
         justify-content: center;
-        background: rgba(var(--bg-article-item));
+        border: 1px solid rgba(var(--bg-article-item));
+        box-shadow: -1px -1px 22px 1px rgba(var(--bg-article-item));
         padding: 0 20px;
         footer {
             display: flex;
@@ -107,8 +108,10 @@ export default styled.article`
         margin-top: 1rem;
         margin-bottom: 1rem;
         font-size: 0.9rem;
-        text-align: justify;
+        text-align: left;
+        word-break: break-all;
         opacity: 0.7;
+        hyphens: auto;
     }
     .post-footer {
         margin-top: 1rem;

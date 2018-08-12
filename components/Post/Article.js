@@ -14,11 +14,12 @@ const StyledArticle = styled.article`
     word-wrap: break-word;
     word-break: break-word;
     flex: 1;
-
+    hyphens: auto;
     img {
         display: block;
         width: 100%;
         margin: 2rem auto;
+        object-fit: cover;
         max-width: 100%;
         box-shadow: 0px 0px 18px 8px rgba(0, 0, 0, 0.12);
 
