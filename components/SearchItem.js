@@ -9,6 +9,10 @@ const StyledArticle = styled.article`
     border-radius: 2px;
     padding: 1px 24px 24px;
     margin-bottom: 24px;
+
+    .post-summary {
+        margin-bottom: 16px;
+    }
     a {
         color: rgba(var(--color-accent));
         &.post-link {

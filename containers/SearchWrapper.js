@@ -119,7 +119,7 @@ class SearchWrapper extends Component {
         }
 
         const posts = this.state.posts.map((post, i) => {
-            let href = `/${this.props.type}/${post.slug}`;
+            let href = `/${post.type}/${post.slug}`;
             return <SearchItem key={i} post={post} href={href} />;
         });
 

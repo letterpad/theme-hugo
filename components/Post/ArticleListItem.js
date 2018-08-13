@@ -11,7 +11,6 @@ class ArticleListItem extends Component {
     render() {
         const post = this.props.post;
         let href = `/${post.type}/${post.slug}`;
-        const content = post.mode == "markdown" ? post.mdPreview : post.body;
 
         return (
             <StyledArticleItem className="post-entry">
@@ -25,7 +24,7 @@ class ArticleListItem extends Component {
                         <PostMeta className="post-meta">
                             {post.author.fname} {post.author.lname} ·{" "}
                             {moment(new Date(post.created_at)).format("LL")}·{" "}
-                            {readingTime(content).text}
+                            {readingTime(post.body).text}
                         </PostMeta>
                     </header>
                     <p className="post-summary">{post.excerpt}</p>
