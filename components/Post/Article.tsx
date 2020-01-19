@@ -1,12 +1,14 @@
 import React, { Component } from "react";
 import moment from "moment";
-import config from "config";
 import Disqus from "disqus-react";
 import styled from "styled-components";
 import { PostTitle, PostMeta, StyledTags } from "../../styled/common";
 import { Link } from "react-router-dom";
 import StyledAuthor from "../../styled/StyledAuthor";
 import HeroImage from "../HeroImage";
+import { Post } from "../../../../../__generated__/gqlTypes";
+import { TypeSettings } from "../../../../types";
+import config from "../../../../../config";
 
 const StyledArticle = styled.article`
   position: relative;
@@ -37,19 +39,26 @@ const ArticleHolder = styled.div`
   width: 100%;
   margin: auto;
 `;
-export default class Article extends Component {
+
+interface IArticle {
+  post: Post;
+  settings: TypeSettings;
+  adjacentPosts?: any;
+}
+export default class Article extends Component<IArticle> {
   render() {
-    const tags = [];
-    const categories = [];
+    const tags: JSX.Element[] = [];
+    const categories: JSX.Element[] = [];
     const { post } = this.props;
     const disqusShortname = this.props.settings.disqus_id.value;
     const disqusConfig = {
-      url: post.url,
-      identifier: post.id,
+      url: post.slug,
+      identifier: post.id.toString(),
       title: post.title,
     };
 
     post.taxonomies.forEach((taxonomy, i) => {
+      if (!taxonomy) return;
       if (taxonomy.type === "post_category") {
         categories.push(
           <Link key={i} to={"/category/" + taxonomy.slug}>
@@ -69,6 +78,7 @@ export default class Article extends Component {
     const displayAuthor = JSON.parse(
       this.props.settings.displayAuthorInfo.value,
     ); // convert "true" to true
+
     return (
       <section className="post-detail">
         <HeroImage
@@ -82,12 +92,12 @@ export default class Article extends Component {
             </PostTitle>
             <PostMeta className="post-meta">
               {this.props.post.author.fname} ·{" "}
-              {moment(new Date(post.createdAt)).format("LL")} · 4 min read ·{" "}
+              {moment(post.createdAt).format("LL")} · 4 min read ·{" "}
               <StyledTags className="tags">{categories}</StyledTags>
             </PostMeta>
           </header>
           <StyledArticle className="post-content">
-            <p
+            <div
               dangerouslySetInnerHTML={{
                 __html: content,
               }}
@@ -107,7 +117,7 @@ export default class Article extends Component {
               </div>
             </StyledAuthor>
           )}
-          {this.props.adjacentPosts}
+          {/* {this.props.adjacsentPosts} */}
 
           {disqusShortname && post.type == "post" && (
             <div id="disqus_thread_parent">

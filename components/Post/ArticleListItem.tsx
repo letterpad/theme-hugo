@@ -1,13 +1,19 @@
 import React, { Component } from "react";
 import { Link } from "react-router-dom";
 import moment from "moment";
-import config from "config";
 import LazyImage from "../../../../helpers/LazyImage";
 import { PostTitle, PostMeta, StyledReadMore } from "../../styled/common";
 import StyledArticleItem from "../../styled/StyledArticleItem";
+import { Post } from "../../../../../__generated__/gqlTypes";
+import config from "../../../../../config";
 const readingTime = require("reading-time");
 
-class ArticleListItem extends Component {
+interface IArticleListItem {
+  post: Post;
+  isStatic: boolean;
+}
+
+class ArticleListItem extends Component<IArticleListItem> {
   render() {
     const post = this.props.post;
     let href = `/${post.type}/${post.slug}`;
@@ -23,7 +29,7 @@ class ArticleListItem extends Component {
             </PostTitle>
             <PostMeta className="post-meta">
               {post.author.fname} {post.author.lname} ·{" "}
-              {moment(new Date(post.createdAt)).format("LL")}·{" "}
+              {moment(post.createdAt).format("LL")}·{" "}
               {readingTime(post.body).text}
             </PostMeta>
           </header>
