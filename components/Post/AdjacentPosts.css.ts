@@ -11,7 +11,7 @@ export default styled.div`
     .adjacent-post-item {
         label {
             cursor: pointer;
-            color: var(--color-text-primary);
+            color: var(--color-base);
         }
         display: flex;
         flex-direction: column;

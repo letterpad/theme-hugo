@@ -1,13 +1,14 @@
 import React, { Component } from "react";
-import styled from "styled-components";
+
 import Header from "../components/Header";
-import StyledMain from "../styled/StyledMain";
 import { ILayoutProps } from "../../../types";
+import StyledMain from "../styled/StyledMain";
+import styled from "styled-components";
 
 require("../public/pcss/client.pcss");
 
 const darkTheme = `
-    --color-text-primary: #dfdfdf;
+    --color-base: #dfdfdf;
     --color-menu-link: #fff;
     --color-border: #3c3c3c;
     --color-accent: 70,183, 70;
@@ -18,9 +19,7 @@ const darkTheme = `
 `;
 
 const lightTheme = `
-    --color-text-primary: #333;
     --color-menu-link: #fff;
-    --color-border: #333;
     --color-accent: 20, 181, 239;
     --color-headings: #000;
     --bg-article-item: 240, 240, 240;

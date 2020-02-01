@@ -1,11 +1,12 @@
+import { PostMeta, PostTitle, StyledReadMore } from "../../styled/common";
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
-import moment from "moment";
+
 import LazyImage from "../../../../helpers/LazyImage";
-import { PostTitle, PostMeta, StyledReadMore } from "../../styled/common";
-import StyledArticleItem from "../../styled/StyledArticleItem";
+import { Link } from "react-router-dom";
 import { Post } from "../../../../../__generated__/gqlTypes";
+import StyledArticleItem from "../../styled/StyledArticleItem";
 import config from "../../../../../config";
+import moment from "moment";
 const readingTime = require("reading-time");
 
 interface IArticleListItem {
@@ -30,7 +31,7 @@ class ArticleListItem extends Component<IArticleListItem> {
             <PostMeta className="post-meta">
               {post.author.fname} {post.author.lname} ·{" "}
               {moment(post.createdAt).format("LL")}·{" "}
-              {readingTime(post.body).text}
+              {readingTime(post.html).text}
             </PostMeta>
           </header>
           <p className="post-summary">{post.excerpt}</p>

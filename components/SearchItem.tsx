@@ -18,7 +18,7 @@ const StyledArticle = styled.article`
   a {
     color: rgba(var(--color-accent));
     &.post-link {
-      color: var(--color-text-primary);
+      color: var(--color-base);
       &:hover {
         color: rgba(var(--color-accent));
       }
