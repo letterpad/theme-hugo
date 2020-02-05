@@ -265,8 +265,9 @@ const StyledArticle = styled.article`
     margin-bottom: 0;
   }
   .lp-editor code {
-    padding: 0.5em 1em;
-    white-space: nowrap;
+    padding: 0;
+    white-space: pre-wrap;
+    font-size: 0.8rem;
   }
   .lp-editor code.code-block {
     display: block;
