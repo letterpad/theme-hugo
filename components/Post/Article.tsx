@@ -55,7 +55,7 @@ export default class Article extends Component<IArticle> {
     return (
       <section className="post-detail">
         <HeroImage
-          image={config.baseName + post.cover_image}
+          image={post.cover_image}
           display={post.cover_image.length > 0}
         />
         <ArticleHolder>
@@ -80,7 +80,7 @@ export default class Article extends Component<IArticle> {
           {displayAuthor && post.type == "post" && (
             <StyledAuthor className="author-info">
               <div className="author-avatar">
-                <img src={config.baseName + post.author.avatar} />
+                <img src={post.author.avatar} />
               </div>
               <div className="author-details">
                 <div className="author-name">

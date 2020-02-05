@@ -1,18 +1,19 @@
-import React from "react";
-import ArticleListItem from "../components/Post/ArticleListItem";
-import Loader from "../components/Loader";
-import config from "../../../../config";
-import Paginate from "../components/Paginate";
-import OhSnap from "../components/OhSnap";
-import Pagination from "../styled/Pagination";
-import HeroImage from "../components/HeroImage";
-import { IThemeContainer } from "../../../types";
-import { QUERY_POSTS } from "../../../../shared/queries/Queries";
 import {
   Post,
   PostsQuery,
   PostsQueryVariables,
 } from "../../../../__generated__/gqlTypes";
+
+import ArticleListItem from "../components/Post/ArticleListItem";
+import HeroImage from "../components/HeroImage";
+import { IThemeContainer } from "../../../types";
+import Loader from "../components/Loader";
+import OhSnap from "../components/OhSnap";
+import Paginate from "../components/Paginate";
+import Pagination from "../styled/Pagination";
+import { QUERY_POSTS } from "../../../../shared/queries/Queries";
+import React from "react";
+import config from "../../../../config";
 import { useQuery } from "react-apollo";
 
 const Posts: IThemeContainer = ({
@@ -57,10 +58,7 @@ const Posts: IThemeContainer = ({
 
   return (
     <section className="post-list">
-      <HeroImage
-        image={config.baseName + banner.value}
-        display={banner.value.length > 0}
-      />
+      <HeroImage image={banner.value} display={banner.value.length > 0} />
 
       {(posts.rows as Post[]).map((post, i) => (
         <ArticleListItem key={i} post={post} isStatic={false} />

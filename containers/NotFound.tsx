@@ -1,5 +1,5 @@
-import React from "react";
 import { Link } from "react-router-dom";
+import React from "react";
 import config from "../../../../config";
 
 const NotFound: React.FC = () => {
@@ -7,7 +7,7 @@ const NotFound: React.FC = () => {
     <section>
       <div className="block-404">
         <div className="image-404">
-          <img src={config.baseName + "/hugo/images/robot.png"} />
+          <img src={config.BASE_NAME + "/hugo/images/robot.png"} />
         </div>
         <div className="error-block">
           <h1>404</h1>

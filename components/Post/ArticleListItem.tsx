@@ -5,8 +5,8 @@ import LazyImage from "../../../../helpers/LazyImage";
 import { Link } from "react-router-dom";
 import { Post } from "../../../../../__generated__/gqlTypes";
 import StyledArticleItem from "../../styled/StyledArticleItem";
-import config from "../../../../../config";
 import moment from "moment";
+
 const readingTime = require("reading-time");
 
 interface IArticleListItem {
@@ -17,7 +17,7 @@ interface IArticleListItem {
 class ArticleListItem extends Component<IArticleListItem> {
   render() {
     const post = this.props.post;
-    let href = `/${post.type}/${post.slug}`;
+    let href = post.slug;
 
     return (
       <StyledArticleItem className="post-entry">
@@ -44,10 +44,7 @@ class ArticleListItem extends Component<IArticleListItem> {
         {post.cover_image != "" && (
           <div className="post-image-box">
             <Link className="post-link" to={href}>
-              <LazyImage
-                src={config.baseName + post.cover_image}
-                width="100%"
-              />
+              <LazyImage src={post.cover_image} width="100%" />
             </Link>
           </div>
         )}

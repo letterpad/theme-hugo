@@ -1,14 +1,15 @@
-import React, { Component } from "react";
 import { NavLink, RouteComponentProps } from "react-router-dom";
+import React, { Component } from "react";
+
 import { Link } from "react-router-dom";
-import config from "../../../../config";
 import Search from "../../../helpers/Search";
 import SiteHeader from "../styled/SiteHeader";
 import { SiteLogo } from "../styled/common";
 import SocialIconsStyled from "../styled/SocialIcons";
 import StyledMenu from "../styled/StyledMenu";
-import styled from "styled-components";
 import { TypeSettings } from "../../../types";
+import config from "../../../../config";
+import styled from "styled-components";
 
 const StyledThemeChange = styled.div`
   display: flex;
@@ -84,7 +85,7 @@ class Header extends Component<IHeaderProps, any> {
           <Link to="/">
             <SiteLogo>
               <img
-                src={config.baseName + settings.site_logo.value}
+                src={settings.site_logo.value}
                 alt="Logo"
                 className="site_logo"
               />
@@ -111,16 +112,15 @@ class Header extends Component<IHeaderProps, any> {
         <StyledMenu className={"site-menu " + menucollapsedClass}>
           <ul className="menu-list">
             {menu.map((item, i) => {
-              const { to, title } = getLinkAndTitle(item, i);
               return (
                 <li className="menu-item" key={i}>
                   <NavLink
-                    to={to}
+                    to={item.slug}
                     className="normal"
                     activeClassName="is-active"
                     exact
                   >
-                    {title}
+                    {item.title}
                   </NavLink>
                 </li>
               );
@@ -141,17 +141,3 @@ class Header extends Component<IHeaderProps, any> {
   }
 }
 export default Header;
-
-function getLinkAndTitle(item, i) {
-  let { title } = item;
-  let to = "/posts/" + item.slug;
-
-  if (item.type === "page") {
-    to = "/page/" + item.slug;
-  }
-  if (i === 0) {
-    title = "Home";
-    to = "/";
-  }
-  return { to, title };
-}
