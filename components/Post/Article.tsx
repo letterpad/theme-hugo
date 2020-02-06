@@ -34,13 +34,13 @@ export default class Article extends Component<IArticle> {
       if (!taxonomy) return;
       if (taxonomy.type === "post_category") {
         categories.push(
-          <Link key={i} to={"/category/" + taxonomy.slug}>
+          <Link key={i} to={taxonomy.slug}>
             {taxonomy.name}
           </Link>,
         );
       } else {
         tags.push(
-          <Link key={i} to={"/tag/" + taxonomy.slug}>
+          <Link key={i} to={taxonomy.slug}>
             #{taxonomy.name}
           </Link>,
         );

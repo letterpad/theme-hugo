@@ -2,13 +2,11 @@ import { NavLink, RouteComponentProps } from "react-router-dom";
 import React, { Component } from "react";
 
 import { Link } from "react-router-dom";
-import Search from "../../../helpers/Search";
 import SiteHeader from "../styled/SiteHeader";
 import { SiteLogo } from "../styled/common";
 import SocialIconsStyled from "../styled/SocialIcons";
 import StyledMenu from "../styled/StyledMenu";
 import { TypeSettings } from "../../../types";
-import config from "../../../../config";
 import styled from "styled-components";
 
 const StyledThemeChange = styled.div`
@@ -108,7 +106,7 @@ class Header extends Component<IHeaderProps, any> {
           />
         </button>
 
-        <Search history={this.props.router.history} />
+        {/* <Search history={this.props.router.history} /> */}
         <StyledMenu className={"site-menu " + menucollapsedClass}>
           <ul className="menu-list">
             {menu.map((item, i) => {
