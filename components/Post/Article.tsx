@@ -293,6 +293,22 @@ const StyledArticle = styled.article`
     padding: 0px;
     margin: 0;
   }
+  .lp-editor table,
+  .lp-editor td,
+  .lp-editor th {
+    border: 1px solid #ddd;
+    text-align: left;
+  }
+
+  .lp-editor table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+
+  .lp-editor th,
+  .lp-editor td {
+    padding: 15px;
+  }
 `;
 const ArticleHolder = styled.div`
   max-width: 768px;
