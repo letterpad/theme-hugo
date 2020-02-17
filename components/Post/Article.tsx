@@ -3,13 +3,10 @@ import React, { Component } from "react";
 
 import Disqus from "disqus-react";
 import HeroImage from "../HeroImage";
-import LetterpadEditor from "../../../../../../../editor/src/editor";
 import { Link } from "react-router-dom";
-import Markdown from "react-markdown";
 import { Post } from "../../../../../__generated__/gqlTypes";
 import StyledAuthor from "../../styled/StyledAuthor";
 import { TypeSettings } from "../../../../types";
-import config from "../../../../../config";
 import moment from "moment";
 import styled from "styled-components";
 
@@ -80,7 +77,7 @@ export default class Article extends Component<IArticle> {
           {displayAuthor && post.type == "post" && (
             <StyledAuthor className="author-info">
               <div className="author-avatar">
-                <img src={post.author.avatar} />
+                {post.author.avatar && <img src={post.author.avatar} />}
               </div>
               <div className="author-details">
                 <div className="author-name">

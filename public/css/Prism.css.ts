@@ -1,4 +1,6 @@
-.prism-dark {
+import { createGlobalStyle } from "styled-components";
+export const PrismCss = createGlobalStyle`
+    .prism-dark {
     background: rgb(46, 51, 68);
     color: #fff;
     font-size: 13px;
@@ -223,3 +225,5 @@ pre[class*="language-"][data-language]::before {
     padding: 0 0.5em;
     text-shadow: none;
 }
+
+`;

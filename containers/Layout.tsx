@@ -1,11 +1,16 @@
+import {
+  CssVariables,
+  Fonts,
+  HugoBaseCss,
+  NormalizeCss,
+} from "../public/css/GlobalStyle.css";
 import React, { Component } from "react";
 
 import Header from "../components/Header";
 import { ILayoutProps } from "../../../types";
+import { PrismCss } from "../public/css/Prism.css";
 import StyledMain from "../styled/StyledMain";
 import styled from "styled-components";
-
-require("../public/pcss/client.pcss");
 
 const darkTheme = `
     --color-base: #dfdfdf;
@@ -47,6 +52,11 @@ class Layout extends Component<ILayoutProps, {}> {
     };
     return (
       <CSSVariables {...theme}>
+        <Fonts />
+        <PrismCss />
+        <CssVariables />
+        <NormalizeCss />
+        <HugoBaseCss />
         <Header
           settings={settings}
           router={router}

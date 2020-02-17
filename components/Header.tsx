@@ -9,6 +9,12 @@ import StyledMenu from "../styled/StyledMenu";
 import { TypeSettings } from "../../../types";
 import styled from "styled-components";
 
+const IconTwitter = require("../public/images/social/twitter.svg").default;
+const IconFacebook = require("../public/images/social/facebook.svg").default;
+
+const IconGithub = require("../public/images/social/github.svg").default;
+const IconInstagram = require("../public/images/social/instagram.svg").default;
+
 const StyledThemeChange = styled.div`
   display: flex;
   flex-direction: row;
@@ -29,6 +35,13 @@ const StyledThemeChange = styled.div`
   }
 `;
 
+const iconMap = {
+  social_twitter: IconTwitter,
+  social_facebook: IconFacebook,
+  social_github: IconGithub,
+  social_instagram: IconInstagram,
+};
+
 const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
   const socialIcons = Object.keys(settings)
     // get all the settings with start with "social_"
@@ -37,7 +50,6 @@ const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
         setting.indexOf("social_") === 0 && settings[setting].value.length > 0,
     )
     .map(setting => {
-      const icon = "icon icon-" + setting.split("_")[1];
       return (
         <li key={setting} className="social-item">
           <a
@@ -46,7 +58,11 @@ const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
             href={settings[setting].value}
             title={setting}
           >
-            <span className={icon} />
+            <img
+              src={iconMap[settings[setting].option]}
+              width="20"
+              height="20"
+            />
           </a>
         </li>
       );
@@ -90,6 +106,7 @@ class Header extends Component<IHeaderProps, any> {
             </SiteLogo>
           </Link>
         )}
+
         {!logo && (
           <div>
             <Link to="/">
@@ -113,12 +130,12 @@ class Header extends Component<IHeaderProps, any> {
               return (
                 <li className="menu-item" key={i}>
                   <NavLink
-                    to={item.slug}
+                    to={i === 0 ? "/" : item.slug}
                     className="normal"
                     activeClassName="is-active"
                     exact
                   >
-                    {item.title}
+                    {i === 0 ? "Home" : item.title}
                   </NavLink>
                 </li>
               );
@@ -127,10 +144,10 @@ class Header extends Component<IHeaderProps, any> {
         </StyledMenu>
 
         <SocialIconsStyled className={"social-menu " + menucollapsedClass}>
-          <StyledThemeChange>
+          {/* <StyledThemeChange>
             <div className="night" onClick={() => switchTheme("dark")} />
             <div className="day" onClick={() => switchTheme("light")} />
-          </StyledThemeChange>
+          </StyledThemeChange> */}
           <h2 className="offscreen">Social Networks</h2>
           <SocialIcons settings={settings} />
         </SocialIconsStyled>

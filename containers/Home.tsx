@@ -1,7 +1,8 @@
-import React from "react";
+import { EnumContentType, IThemeContainer } from "../../../types";
+
 import Posts from "./Posts";
+import React from "react";
 import SinglePage from "./SinglePage";
-import { IThemeContainer, EnumContentType } from "../../../types";
 
 const Home: IThemeContainer = props => {
   if (props.contentType === EnumContentType.POSTS) {
@@ -9,4 +10,5 @@ const Home: IThemeContainer = props => {
   }
   return <SinglePage {...props} />;
 };
+
 export default Home;

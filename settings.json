@@ -3,8 +3,8 @@
     "name": "theme-color",
     "type": "radio",
     "tag": "input",
-    "options": ["Light111", "Dark111"],
-    "defaultValue": "Dark111",
+    "options": ["Light", "Dark"],
+    "defaultValue": "Dark",
     "label": "Change theme color",
     "helpText": ".."
   }
