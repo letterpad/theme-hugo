@@ -115,17 +115,24 @@ const StyledArticle = styled.article`
   word-break: break-word;
   flex: 1;
   hyphens: auto;
-  img {
-    display: block;
-    width: 100%;
+  figure {
     margin: 2rem auto;
+    display: block;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  }
+
+  figure img {
     object-fit: cover;
     max-width: 100%;
-    box-shadow: 0px 0px 18px 8px rgba(0, 0, 0, 0.12);
-
     @media screen and (max-width: 800px) {
       box-shadow: none;
     }
+  }
+  figure figcaption {
+    font-style: italic;
+    font-size: 0.8rem;
   }
 
   blockquote {
