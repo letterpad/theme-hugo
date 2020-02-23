@@ -1,13 +1,20 @@
 import { createGlobalStyle } from "styled-components";
 export const HugoBaseCss = createGlobalStyle`
-    @import "./prism-theme.css";
+    @import url('https://fonts.googleapis.com/css?family=Yrsa&display=swap');
+
     html {
-    font-size: 16px;
-    line-height: 1.618;
-    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", "Roboto", "Oxygen",
-        "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", "PingFang SC",
-        "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei",
-        "Helvetica Neue", sans-serif;
+        font-size: 16px;
+        line-height: 1.618;
+        font-family: 'Yrsa', serif;
+        @media(max-width: 991px) {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        @media(max-width: 767px) {
+            font-size: 14px;
+            line-height: 1.4;
+        }
+        
     }
 
     body {
@@ -250,6 +257,9 @@ export const NormalizeCss = createGlobalStyle`
         font-size: 2em;
         margin: 0.67em 0;
     }
+    h1, h2, h3, h4, h5, h6 {
+        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Helvetica Neue", sans-serif;
+    }
     figcaption,
     figure,
     main {
@@ -283,14 +293,6 @@ export const NormalizeCss = createGlobalStyle`
     b,
     strong {
         font-weight: bolder;
-    }
-    code,
-    kbd,
-    samp {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto,
-            Helvetica, Arial, sans-serif, "Apple Color Emoji", "Segoe UI Emoji",
-            "Segoe UI Symbol";
-        font-size: 1em;
     }
     dfn {
         font-style: italic;

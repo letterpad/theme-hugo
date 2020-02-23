@@ -1,5 +1,6 @@
 import {
   Post,
+  PostSortBy,
   PostsQuery,
   PostsQueryVariables,
 } from "../../../../__generated__/gqlTypes";
@@ -35,6 +36,8 @@ const Posts: IThemeContainer = ({
   if (params.tag) {
     filters.tagSlug = params.tag;
   }
+  filters.sortBy = PostSortBy.Newest;
+
   const { loading, data } = useQuery<PostsQuery, PostsQueryVariables>(
     QUERY_POSTS,
     {

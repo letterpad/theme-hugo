@@ -1,12 +1,29 @@
-import styled from "styled-components";
 import { Link } from "react-router-dom";
+import styled from "styled-components";
 
-export const PostTitle = styled.h2<any>`
-  font-size: ${p => (p.large ? 2 : 1.5)}rem;
-  line-height: ${p => (p.large ? 2 : 1.5)};
+export const PostTitleListItem = styled.h2<any>`
+  font-size: 1.8rem;
+  line-height: 1;
   font-weight: 700;
   margin-top: 1.5rem;
   margin-bottom: 0.3rem;
+
+  @media (max-width: 767px) {
+    margin-top: 3rem;
+    font-size: 1.8rem;
+  }
+`;
+export const PostTitle = styled.h2<any>`
+  font-size: 2rem;
+  line-height: 1.2;
+  font-weight: 700;
+  margin-top: 1.5rem;
+  margin-bottom: 0.3rem;
+
+  @media (max-width: 767px) {
+    margin-top: 3rem;
+    font-size: 1.8rem;
+  }
 `;
 export const PostMeta = styled.h2`
   font-size: 0.8rem;
@@ -39,12 +56,18 @@ export const StyledTags = styled.div`
   display: inline;
   a {
     color: rgba(var(--color-accent));
-    font-size: 14px;
     margin-right: 8px;
+
+    &:after {
+      content: ",";
+    }
+    &:last-child:after {
+      content: "";
+    }
   }
 `;
 
 export const StyledReadMore = styled(Link)`
-  font-size: 0.8rem;
   letter-spacing: 1px;
+  font-weight: bold;
 `;

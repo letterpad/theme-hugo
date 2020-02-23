@@ -8,7 +8,9 @@ export default styled.article`
   margin: auto;
   margin-bottom: 40px;
   border-top: none;
-
+  background: rgba(var(--bg-list-article), 1);
+  font-size: 1.1rem;
+  line-height: 1.3;
   @media screen and (max-width: 1250px) {
     flex-direction: column-reverse;
   }
@@ -19,8 +21,8 @@ export default styled.article`
     display: flex;
     flex-direction: column;
     justify-content: center;
-    border: 1px solid rgba(var(--bg-article-item));
-    box-shadow: -1px -1px 22px 1px rgba(var(--bg-article-item));
+    border: 1px solid rgba(var(--bg-list-article), 1);
+    /* box-shadow: -1px -1px 22px 1px rgba(var(--bg-article-item)); */
     padding: 0 20px;
     footer {
       display: flex;
@@ -107,11 +109,14 @@ export default styled.article`
   .post-summary {
     margin-top: 1rem;
     margin-bottom: 1rem;
-    font-size: 0.9rem;
     text-align: left;
     word-break: break-all;
     opacity: 0.7;
     hyphens: auto;
+    @media screen and (max-width: 767px) {
+      font-size: 1.2rem;
+      line-height: 1.5;
+    }
   }
   .post-footer {
     margin-top: 1rem;

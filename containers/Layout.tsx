@@ -20,7 +20,9 @@ const darkTheme = `
     --color-headings: #fff;
     --bg-article-item: 30, 34, 50;
     --bg-content: 25, 28, 39;
-    --bg-sidebar: 25, 28, 39;
+    --bg-sidebar: 13, 15, 21;
+    --bg-list-article: 13, 15, 21;
+    --bg-footer: #11141d;
 `;
 
 const lightTheme = `
@@ -29,18 +31,24 @@ const lightTheme = `
     --color-headings: #000;
     --bg-article-item: 240, 240, 240;
     --bg-content: 255, 255, 255;
-    --bg-sidebar: 25, 28, 39;
+    --bg-sidebar: 13, 15, 21;
+    --bg-list-article: 245, 245, 245;
+    --bg-footer: #e6e6e6;
 `;
 const CSSVariables = styled.div<any>`
   ${props => (props.dark ? darkTheme : lightTheme)};
 `;
 
+const theme =
+  typeof localStorage !== "undefined" ? localStorage.theme : "light";
+console.log(theme);
 class Layout extends Component<ILayoutProps, {}> {
   state = {
-    theme: "light".toLowerCase(),
+    theme: theme,
   };
 
   switchTheme = theme => {
+    localStorage.theme = theme;
     this.setState({ theme });
   };
 
@@ -64,16 +72,28 @@ class Layout extends Component<ILayoutProps, {}> {
         />
         <StyledMain>
           <Content {...props} />
+          {settings.site_footer.value && (
+            <Footer
+              className="site-footer"
+              dangerouslySetInnerHTML={{
+                __html: settings.site_footer.value,
+              }}
+            />
+          )}
         </StyledMain>
-        <footer
-          className="site-footer"
-          dangerouslySetInnerHTML={{
-            __html: settings.site_footer.value,
-          }}
-        />
       </CSSVariables>
     );
   }
 }
 
 export default Layout;
+
+const Footer = styled.footer`
+  background: var(--bg-footer);
+  color: #4c587d;
+  margin: 0 -33px;
+  padding: 30px;
+  margin-bottom: -20px;
+  margin-top: 100px;
+  text-align: center;
+`;

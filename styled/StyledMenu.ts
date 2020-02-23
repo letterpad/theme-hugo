@@ -5,11 +5,14 @@ export default styled.nav`
   .menu-list {
     list-style: none;
     padding: 0;
-
+    font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen,
+      Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "PingFang SC",
+      "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei",
+      "Helvetica Neue", sans-serif;
     @media screen and (min-width: 800px) {
       text-align: left;
       padding-left: 24px;
-      font-size: 13px;
+      font-size: 0.8rem;
     }
   }
   .menu-item {

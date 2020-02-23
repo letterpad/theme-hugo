@@ -16,9 +16,42 @@ interface IArticle {
   adjacentPosts?: any;
 }
 export default class Article extends Component<IArticle> {
+  renderTags = () => {
+    const { post } = this.props;
+
+    const tags = post.taxonomies
+      .filter(taxonomy => taxonomy.type === "post_tag")
+      .map(taxonomy => {
+        return (
+          <Link key={taxonomy.slug} to={taxonomy.slug}>
+            #{taxonomy.name}
+          </Link>
+        );
+      });
+
+    return tags.length > 0 ? (
+      <StyledTags className="tags">{tags}</StyledTags>
+    ) : null;
+  };
+
+  renderCategories = () => {
+    const { post } = this.props;
+
+    const categories = post.taxonomies
+      .filter(taxonomy => taxonomy.type === "post_category")
+      .map(taxonomy => {
+        return (
+          <Link key={taxonomy.slug} to={taxonomy.slug}>
+            {taxonomy.name}
+          </Link>
+        );
+      });
+    return categories.length > 0 ? (
+      <StyledTags className="tags">{categories}</StyledTags>
+    ) : null;
+  };
+
   render() {
-    const tags: JSX.Element[] = [];
-    const categories: JSX.Element[] = [];
     const { post } = this.props;
     const disqusShortname = this.props.settings.disqus_id.value;
     const disqusConfig = {
@@ -26,23 +59,6 @@ export default class Article extends Component<IArticle> {
       identifier: post.id.toString(),
       title: post.title,
     };
-
-    post.taxonomies.forEach((taxonomy, i) => {
-      if (!taxonomy) return;
-      if (taxonomy.type === "post_category") {
-        categories.push(
-          <Link key={i} to={taxonomy.slug}>
-            {taxonomy.name}
-          </Link>,
-        );
-      } else {
-        tags.push(
-          <Link key={i} to={taxonomy.slug}>
-            #{taxonomy.name}
-          </Link>,
-        );
-      }
-    });
 
     const content = post.html;
     const displayAuthor = JSON.parse(
@@ -63,7 +79,7 @@ export default class Article extends Component<IArticle> {
             <PostMeta className="post-meta">
               {this.props.post.author.fname} ·{" "}
               {moment(post.createdAt).format("LL")} · 4 min read ·{" "}
-              <StyledTags className="tags">{categories}</StyledTags>
+              {this.renderCategories()}
             </PostMeta>
           </header>
           <StyledArticle className="post-content">
@@ -73,7 +89,8 @@ export default class Article extends Component<IArticle> {
               }}
             />
           </StyledArticle>
-          {tags.length > 0 && <StyledTags className="tags">{tags}</StyledTags>}
+
+          {this.renderTags()}
           {displayAuthor && post.type == "post" && (
             <StyledAuthor className="author-info">
               <div className="author-avatar">
@@ -104,25 +121,36 @@ export default class Article extends Component<IArticle> {
 }
 
 const StyledArticle = styled.article`
+  @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500&display=swap");
+
   --editorPadding: 1rem;
   --spacingTop: 2rem;
-  --spacingTopSmall: 0.5rem;
+  --spacingTopSmall: 0.86rem;
   --spacingBottom: 1rem;
-
   position: relative;
-  line-height: 1.8;
-  word-wrap: break-word;
-  word-break: break-word;
+  line-height: 1.45;
   flex: 1;
-  hyphens: auto;
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  letter-spacing: -0.5;
+  word-spacing: -0.5;
+
+  @media (min-width: 1080px) {
+    margin-top: 56px;
+    margin-bottom: 56px;
+  }
   figure {
     margin: 2rem auto;
     display: block;
     display: flex;
     align-items: center;
     flex-direction: column;
+    margin-top: 40px;
+    @media (min-width: 1080px) {
+      margin-top: 56px;
+    }
   }
-
   figure img {
     object-fit: cover;
     max-width: 100%;
@@ -132,13 +160,14 @@ const StyledArticle = styled.article`
   }
   figure figcaption {
     font-style: italic;
-    font-size: 0.8rem;
+    font-size: 0.85rem;
   }
-
-  blockquote {
+  .lp-editor blockquote {
     border-left: 5px solid rgba(var(--color-accent), 1);
   }
-
+  .lp-editor blockquote blockquote {
+    margin: 8px !important;
+  }
   .lp-editor div[data-slate-editor="true"] {
     padding-bottom: 400px;
   }
@@ -151,50 +180,52 @@ const StyledArticle = styled.article`
   .lp-editor h4,
   .lp-editor h5,
   .lp-editor h6 {
-    font-family: "Montserrat", sans-serif;
-    font-weight: 500;
+    font-weight: 600;
     text-rendering: optimizeLegibility;
     line-height: 1;
-    padding-top: var(--spacingTop);
-    padding-bottom: var(--spacingBottom);
+    margin-top: 1.2em;
+    @media (min-width: 1080px) {
+      margin-top: 1.95em;
+    }
   }
-
   .lp-editor h1 {
-    font-size: 2rem;
+    font-size: 2.5rem;
     border-bottom: solid 1px var(--color-border);
   }
-
   .lp-editor h2 {
+    font-size: 2rem;
+  }
+  .lp-editor h3 {
     font-size: 1.6rem;
   }
-
-  .lp-editor h3 {
-    font-size: 1.4rem;
-  }
-
   .lp-editor h4 {
     font-size: 1.2rem;
   }
-
   .lp-editor h5 {
-    font-size: 1.1rem;
+    font-size: 1rem;
   }
-
   .lp-editor h6 {
     font-size: 1rem;
   }
-
   .lp-editor a {
     text-decoration: underline;
+    color: var(--bg-hover-success);
   }
-
   .lp-editor hr {
-    padding-top: 0.75em;
-    margin: 0;
+    padding-top: 2.2em;
     border: none;
-    border-top: 1px solid var(--color-border);
   }
-
+  .lp-editor {
+    hr::after {
+      content: "...";
+      font-size: 16px;
+      zoom: 3;
+      margin-top: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
   .lp-editor section {
     padding: 0;
     padding-top: var(--spacingTop);
@@ -202,21 +233,26 @@ const StyledArticle = styled.article`
     text-align: justify;
     line-height: 25px;
   }
-
   .lp-editor h1 + section {
-    padding-top: var(--spacingTop);
+    margin-top: var(--spacingTop);
   }
-
   .lp-editor h2 + section,
   .lp-editor h3 + section,
   .lp-editor h4 + section {
-    padding-top: var(--spacingTopSmall);
+    margin-top: var(--spacingTopSmall);
   }
-
-  .lp-editor h1 + .lp-editor h2,
-  .lp-editor h2 + .lp-editor h3,
-  .lp-editor h3 + .lp-editor h4 {
-    padding-top: var(--spacingTop);
+  .lp-editor h1 + p {
+    margin-top: var(--spacingTop);
+  }
+  .lp-editor h2 + p,
+  .lp-editor h3 + p,
+  .lp-editor h4 + p {
+    margin-top: var(--spacingTopSmall);
+  }
+  .lp-editor h1 + h2,
+  .lp-editor h2 + h3,
+  .lp-editor h3 + h4 {
+    margin-top: var(--spacingTop);
   }
   .lp-editor ol,
   .lp-editor ul {
@@ -238,25 +274,22 @@ const StyledArticle = styled.article`
   .lp-editor li + .lp-editor li {
     margin-top: 0.25em;
   }
-
   .lp-editor blockquote,
   .lp-editor dl,
   .lp-editor ol,
   .lp-editor pre,
   .lp-editor table,
   .lp-editor ul {
-    margin-bottom: 16px;
-    margin-top: 0;
+    margin-top: 40px;
+    @media (min-width: 1080px) {
+      margin-top: 56px;
+    }
   }
-  .lp-editor .code-block {
-    background: black;
-    display: block;
-    padding: 10px;
-    font-size: medium;
-  }
-  .lp-editor .code-block pre {
-    padding: 0px;
-    margin-bottom: 0px;
+  .lp-editor p {
+    margin-top: 40px;
+    @media (min-width: 1080px) {
+      margin-top: 56px;
+    }
   }
   .lp-editor blockquote {
     border-left: 0.25em solid var(--color-border);
@@ -268,52 +301,58 @@ const StyledArticle = styled.article`
   .lp-editor blockquote > :last-child {
     margin-bottom: 0;
   }
-  .lp-editor code {
-    padding: 0;
+  .lp-editor p code {
+    padding: 0px 6px;
     white-space: pre-wrap;
-    font-size: 0.8rem;
-  }
-  .lp-editor code.code-block {
-    display: block;
-    overflow-x: auto;
-    padding: 0.5em 1em;
-    line-height: 1.4em;
-    color: #c5c8c6;
-    background: #131b1f;
+    font-size: 1rem;
+    background: var(--color-success);
+    font-weight: 500;
     border-radius: 4px;
-    border: 1px solid #283237;
+    display: inline-flex;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
   }
 
-  .lp-editor code pre {
-    -webkit-font-smoothing: initial;
-    font-size: 13px;
-    direction: ltr;
-    text-align: left;
-    white-space: pre;
-    word-spacing: normal;
-    word-break: normal;
-    tab-size: 4;
-    hyphens: none;
-    padding: 0px;
-    margin: 0;
+  .lp-editor pre code {
+    padding: 0;
+    width: 100%;
+    overflow: auto;
+    display: block;
+    font-size: 0.9rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+    line-height: 2;
+    margin-bottom: -20px;
+    letter-spacing: 0.3px;
   }
+
   .lp-editor table,
   .lp-editor td,
   .lp-editor th {
     border: 1px solid #ddd;
     text-align: left;
   }
-
   .lp-editor table {
     border-collapse: collapse;
     width: 100%;
   }
-
   .lp-editor th,
   .lp-editor td {
     padding: 15px;
   }
+  .lp-editor p + ul,
+  .lp-editor p + ol {
+    margin-top: 1.2rem !important;
+  }
+  .lp-editor ul + p,
+  .lp-editor ol + p {
+    margin-top: 22px !important;
+  }
+  .lp-editor p + p {
+    margin-top: 22px !important;
+  }
 `;
+
 const ArticleHolder = styled.div`
   max-width: 768px;
   width: 100%;

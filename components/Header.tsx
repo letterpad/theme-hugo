@@ -35,14 +35,13 @@ const StyledThemeChange = styled.div`
   }
 `;
 
-const iconMap = {
-  social_twitter: IconTwitter,
-  social_facebook: IconFacebook,
-  social_github: IconGithub,
-  social_instagram: IconInstagram,
-};
-
 const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
+  const iconMap = {
+    social_twitter: IconTwitter,
+    social_facebook: IconFacebook,
+    social_github: IconGithub,
+    social_instagram: IconInstagram,
+  };
   const socialIcons = Object.keys(settings)
     // get all the settings with start with "social_"
     .filter(
@@ -81,11 +80,11 @@ class Header extends Component<IHeaderProps, any> {
     menuOpen: false,
   };
 
-  toggleMenu() {
+  toggleMenu = () => {
     this.setState({
       menuOpen: !this.state.menuOpen,
     });
-  }
+  };
 
   render() {
     const { settings, switchTheme } = this.props;
@@ -116,11 +115,8 @@ class Header extends Component<IHeaderProps, any> {
           </div>
         )}
         <button className="menu-toggle" type="button" onClick={this.toggleMenu}>
-          <span
-            className={
-              "icon " + (this.state.menuOpen ? "icon-close" : "icon-menu")
-            }
-          />
+          {this.state.menuOpen && "X"}
+          {!this.state.menuOpen && "☰"}
         </button>
 
         {/* <Search history={this.props.router.history} /> */}
@@ -144,10 +140,16 @@ class Header extends Component<IHeaderProps, any> {
         </StyledMenu>
 
         <SocialIconsStyled className={"social-menu " + menucollapsedClass}>
-          {/* <StyledThemeChange>
+          <StyledThemeChange>
             <div className="night" onClick={() => switchTheme("dark")} />
             <div className="day" onClick={() => switchTheme("light")} />
-          </StyledThemeChange> */}
+          </StyledThemeChange>
+          <footer
+            className="site-footer"
+            dangerouslySetInnerHTML={{
+              __html: settings.site_footer.value,
+            }}
+          />
           <h2 className="offscreen">Social Networks</h2>
           <SocialIcons settings={settings} />
         </SocialIconsStyled>

@@ -10,13 +10,13 @@ export default styled.header`
   box-sizing: border-box;
   text-align: center;
   background: rgba(var(--bg-sidebar), 1);
-  .icon-menu,
-  .icon-close {
-    color: #a19e9e;
+  button.menu-toggle {
+    color: #fff;
     cursor: pointer;
   }
   a {
     color: var(--color-menu-link);
+    text-decoration: none;
     &.is-active {
       opacity: 1;
       color: rgba(var(--color-accent));
@@ -33,14 +33,14 @@ export default styled.header`
     font-size: 1.5rem;
     font-weight: 700;
     margin: 1rem auto;
-    color: var(--color-base);
+    color: var(--base-shade-1);
     margin-bottom: 0px;
   }
   .subtitle {
     margin-bottom: 3rem;
-    margin-top: 0px;
+    margin-top: 10px;
     opacity: 0.9;
-    color: var(--color-base);
+    color: var(--base-shade-3);
   }
   @media screen and (max-width: 800px) {
     width: 100%;

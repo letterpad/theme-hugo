@@ -1,4 +1,8 @@
-import { PostMeta, PostTitle, StyledReadMore } from "../../styled/common";
+import {
+  PostMeta,
+  PostTitleListItem,
+  StyledReadMore,
+} from "../../styled/common";
 import React, { Component } from "react";
 
 import LazyImage from "../../../../helpers/LazyImage";
@@ -23,11 +27,11 @@ class ArticleListItem extends Component<IArticleListItem> {
       <StyledArticleItem className="post-entry">
         <div className="post-details">
           <header className="post-header">
-            <PostTitle className="post-title">
+            <PostTitleListItem className="post-title">
               <Link className="post-link" to={href}>
                 {post.title}
               </Link>
-            </PostTitle>
+            </PostTitleListItem>
             <PostMeta className="post-meta">
               {post.author.fname} {post.author.lname} ·{" "}
               {moment(post.createdAt).format("LL")}·{" "}
