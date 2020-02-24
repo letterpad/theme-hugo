@@ -112,7 +112,6 @@ export default styled.article`
     text-align: left;
     word-break: break-all;
     opacity: 0.7;
-    hyphens: auto;
     @media screen and (max-width: 767px) {
       font-size: 1.2rem;
       line-height: 1.5;

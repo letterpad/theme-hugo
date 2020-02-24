@@ -9,7 +9,8 @@ export default styled.header`
   padding: 1rem;
   box-sizing: border-box;
   text-align: center;
-  background: rgba(var(--bg-sidebar), 1);
+  background: rgba(13, 15, 21, 1);
+
   button.menu-toggle {
     color: #fff;
     cursor: pointer;
@@ -22,7 +23,7 @@ export default styled.header`
       color: rgba(var(--color-accent));
       font-weight: 700;
     }
-    opacity: 0.9;
+    opacity: 0.6;
     &:focus,
     &:hover {
       opacity: 1;

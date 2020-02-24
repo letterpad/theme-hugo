@@ -9,38 +9,16 @@ import StyledMenu from "../styled/StyledMenu";
 import { TypeSettings } from "../../../types";
 import styled from "styled-components";
 
-const IconTwitter = require("../public/images/social/twitter.svg").default;
-const IconFacebook = require("../public/images/social/facebook.svg").default;
-
-const IconGithub = require("../public/images/social/github.svg").default;
-const IconInstagram = require("../public/images/social/instagram.svg").default;
-
-const StyledThemeChange = styled.div`
-  display: flex;
-  flex-direction: row;
-  justify-content: center;
-  margin-bottom: 30px;
-  border-radius: 4px;
-  div {
-    width: 20px;
-    height: 20px;
-    cursor: pointer;
-    margin-right: 8px;
-    &.night {
-      background: #333;
-    }
-    &.day {
-      background: #fff;
-    }
-  }
-`;
-
 const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
+  const IconTwitter = require("../public/images/social/twitter.svg");
+  const IconFacebook = require("../public/images/social/facebook.svg");
+  const IconGithub = require("../public/images/social/github.svg");
+  const IconInstagram = require("../public/images/social/instagram.svg");
   const iconMap = {
-    social_twitter: IconTwitter,
-    social_facebook: IconFacebook,
-    social_github: IconGithub,
-    social_instagram: IconInstagram,
+    social_twitter: IconTwitter.default,
+    social_facebook: IconFacebook.default,
+    social_github: IconGithub.default,
+    social_instagram: IconInstagram.default,
   };
   const socialIcons = Object.keys(settings)
     // get all the settings with start with "social_"
@@ -119,7 +97,7 @@ class Header extends Component<IHeaderProps, any> {
           {!this.state.menuOpen && "☰"}
         </button>
 
-        {/* <Search history={this.props.router.history} /> */}
+        <SiteDescription>{settings.site_description.value}</SiteDescription>
         <StyledMenu className={"site-menu " + menucollapsedClass}>
           <ul className="menu-list">
             {menu.map((item, i) => {
@@ -158,3 +136,40 @@ class Header extends Component<IHeaderProps, any> {
   }
 }
 export default Header;
+
+const StyledThemeChange = styled.div`
+  display: flex;
+  flex-direction: row;
+  justify-content: center;
+  margin-bottom: 30px;
+  border-radius: 4px;
+  div {
+    width: 20px;
+    height: 20px;
+    cursor: pointer;
+    margin-right: 8px;
+    &.night {
+      background: #333;
+    }
+    &.day {
+      background: #fff;
+    }
+  }
+`;
+
+const SiteDescription = styled.p`
+  display: none;
+  @media (max-width: 800px) {
+    display: block;
+    color: #eee;
+    line-height: 1;
+    display: inline-block;
+    color: var(--base-shade-3);
+    line-height: 1.2;
+    max-width: 700px;
+    font-weight: 400;
+    padding: 20px 0px;
+    margin-top: -20px;
+    width: 100%;
+  }
+`;

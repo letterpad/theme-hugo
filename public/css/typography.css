@@ -1,0 +1,243 @@
+@import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500&display=swap");
+
+.theme-dark #letterpad-editor-container {
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 500;
+  }
+}
+#letterpad-editor-container {
+  --editorPadding: 1rem;
+  --spacingTop: 2rem;
+  --spacingTopSmall: 0.86rem;
+  --spacingBottom: 1rem;
+  position: relative;
+  line-height: 1.45;
+  flex: 1;
+  font-size: 1.5rem;
+  margin-top: 40px;
+  margin-bottom: 40px;
+  letter-spacing: -0.5;
+  word-spacing: -0.5;
+
+  @media (min-width: 1080px) {
+    margin-top: 56px;
+    margin-bottom: 56px;
+  }
+  figure {
+    margin: 2rem auto;
+    display: block;
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+    margin-top: 40px;
+    @media (min-width: 1080px) {
+      margin-top: 56px;
+    }
+  }
+  figure img {
+    object-fit: cover;
+    max-width: 100%;
+    @media screen and (max-width: 800px) {
+      box-shadow: none;
+    }
+  }
+  figure figcaption {
+    font-style: italic;
+    font-size: 0.85rem;
+  }
+  blockquote {
+    border-left: 5px solid rgba(var(--color-accent), 1);
+  }
+  blockquote blockquote {
+    margin: 8px !important;
+  }
+  div[data-slate-editor="true"] {
+    padding-bottom: 400px;
+  }
+  p {
+    margin: 1.2rem 0px;
+  }
+  h1,
+  h2,
+  h3,
+  h4,
+  h5,
+  h6 {
+    font-weight: 600;
+    text-rendering: optimizeLegibility;
+    line-height: 1;
+    margin-top: 1.2em;
+    @media (min-width: 1080px) {
+      margin-top: 1.95em;
+    }
+  }
+  h1 {
+    font-size: 2.5rem;
+    border-bottom: solid 1px var(--color-border);
+  }
+  h2 {
+    font-size: 2rem;
+  }
+  h3 {
+    font-size: 1.6rem;
+  }
+  h4 {
+    font-size: 1.2rem;
+  }
+  h5 {
+    font-size: 1rem;
+  }
+  h6 {
+    font-size: 1rem;
+  }
+  a {
+    color: var(--bg-hover-success);
+  }
+  hr {
+    padding-top: 2.2em;
+    border: none;
+  }
+   {
+    hr::after {
+      content: "...";
+      font-size: 16px;
+      zoom: 3;
+      margin-top: -20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  section {
+    padding: 0;
+    padding-top: var(--spacingTop);
+    padding-bottom: var(--spacingBottom);
+    text-align: justify;
+    line-height: 25px;
+  }
+  h1 + section {
+    margin-top: var(--spacingTop);
+  }
+  h2 + section,
+  h3 + section,
+  h4 + section {
+    margin-top: var(--spacingTopSmall);
+  }
+  h1 + p {
+    margin-top: var(--spacingTop);
+  }
+  h2 + p,
+  h3 + p,
+  h4 + p {
+    margin-top: var(--spacingTopSmall);
+  }
+  h1 + h2,
+  h2 + h3,
+  h3 + h4 {
+    margin-top: var(--spacingTop);
+  }
+  ol,
+  ul {
+    padding-left: 2em;
+  }
+  ol ol,
+  ol ul,
+  ul ol,
+  ul ul {
+    margin-bottom: 0;
+    margin-top: 0;
+  }
+  li {
+    word-wrap: break-all;
+  }
+  li > p {
+    margin-top: 8px;
+  }
+  li + li {
+    margin-top: 0.25em;
+  }
+  blockquote,
+  dl,
+  ol,
+  pre,
+  table,
+  ul {
+    margin-top: 40px;
+    @media (min-width: 1080px) {
+      margin-top: 56px;
+    }
+  }
+  p {
+    margin-top: 40px;
+    @media (min-width: 1080px) {
+      margin-top: 56px;
+    }
+  }
+  blockquote {
+    border-left: 0.25em solid var(--color-border);
+    padding: 0 1em;
+  }
+  blockquote > :first-child {
+    margin-top: 0;
+  }
+  blockquote > :last-child {
+    margin-bottom: 0;
+  }
+  p code {
+    padding: 0px 6px;
+    white-space: pre-wrap;
+    font-size: 1rem;
+    background: var(--color-success);
+    border-radius: 4px;
+    display: inline-flex;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+    color: #333;
+  }
+
+  pre code {
+    padding: 0;
+    width: 100%;
+    overflow: auto;
+    display: block;
+    font-size: 0.9rem;
+    font-family: "IBM Plex Mono", monospace;
+    font-weight: 500;
+    line-height: 2;
+    margin-bottom: -20px;
+    letter-spacing: 0.3px;
+  }
+
+  table,
+  td,
+  th {
+    border: 1px solid var(--color-border);
+    text-align: left;
+    font-size: 1.3rem;
+    color: var(--color-base);
+  }
+  table {
+    border-collapse: collapse;
+    width: 100%;
+  }
+  th,
+  td {
+    padding: 15px;
+  }
+  p + ul,
+  p + ol {
+    margin-top: 1.2rem !important;
+  }
+  ul + p,
+  ol + p {
+    margin-top: 22px !important;
+  }
+  p + p {
+    margin-top: 22px !important;
+  }
+}

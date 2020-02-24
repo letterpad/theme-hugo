@@ -2,25 +2,24 @@ import { createGlobalStyle } from "styled-components";
 export const PrismCss = createGlobalStyle`
    
     .prism-dark {
-        background: rgb(46, 51, 68);
-        color: #fff;
+        /* background: rgb(46, 51, 68);
+        color: #fff; */
         font-family: "Operator Mono", "Fira Code", Consolas, Monaco, "Andale Mono",
             monospace;
     }
 
-    pre[class*="language-"] {
-        border: 1px solid #eee;
-    }
-code[class*="language-"],
+	code[class*="language-"],
 pre[class*="language-"] {
-	font-family: Consolas, Menlo, Monaco, "Andale Mono WT", "Andale Mono", "Lucida Console", "Lucida Sans Typewriter", "DejaVu Sans Mono", "Bitstream Vera Sans Mono", "Liberation Mono", "Nimbus Mono L", "Courier New", Courier, monospace;
-	font-size: 14px;
-	line-height: 1.375;
-	direction: ltr;
+	color: #f8f8f2;
+	background: none;
+	text-shadow: 0 1px rgba(0, 0, 0, 0.3);
+	font-family: Consolas, Monaco, 'Andale Mono', 'Ubuntu Mono', monospace;
 	text-align: left;
 	white-space: pre;
 	word-spacing: normal;
 	word-break: normal;
+	word-wrap: normal;
+	line-height: 1.5;
 	-moz-tab-size: 4;
 	-o-tab-size: 4;
 	tab-size: 4;
@@ -28,24 +27,6 @@ pre[class*="language-"] {
 	-moz-hyphens: none;
 	-ms-hyphens: none;
 	hyphens: none;
-    background: #f5f5f5;
-    color: #2f5692;
-}
-
-pre > code[class*="language-"] {
-	font-size: 1em;
-}
-
-pre[class*="language-"]::-moz-selection, pre[class*="language-"] ::-moz-selection,
-code[class*="language-"]::-moz-selection, code[class*="language-"] ::-moz-selection {
-	text-shadow: none;
-	background: #dfe2f1;
-}
-
-pre[class*="language-"]::selection, pre[class*="language-"] ::selection,
-code[class*="language-"]::selection, code[class*="language-"] ::selection {
-	text-shadow: none;
-	background: #dfe2f1;
 }
 
 /* Code blocks */
@@ -53,92 +34,81 @@ pre[class*="language-"] {
 	padding: 1em;
 	margin: .5em 0;
 	overflow: auto;
+	border-radius: 0.3em;
+}
+
+:not(pre) > code[class*="language-"],
+pre[class*="language-"] {
+	background: #282a36;
 }
 
 /* Inline code */
 :not(pre) > code[class*="language-"] {
 	padding: .1em;
 	border-radius: .3em;
+	white-space: normal;
 }
 
 .token.comment,
 .token.prolog,
 .token.doctype,
 .token.cdata {
-	color: #898ea4;
+	color: #6272a4;
 }
 
 .token.punctuation {
-	color: #5e6687;
+	color: #f8f8f2;
 }
 
-.token.namespace {
+.namespace {
 	opacity: .7;
 }
 
-.token.operator,
+.token.property,
+.token.tag,
+.token.constant,
+.token.symbol,
+.token.deleted {
+	color: #ff79c6;
+}
+
 .token.boolean,
 .token.number {
-	color: #c76b29;
+	color: #bd93f9;
 }
 
-.token.property {
-	color: #c08b30;
+.token.selector,
+.token.attr-name,
+.token.string,
+.token.char,
+.token.builtin,
+.token.inserted {
+	color: #50fa7b;
 }
 
-.token.tag {
-	color: #3d8fd1;
-}
-
-.token.string {
-	color: #22a2c9;
-}
-
-.token.selector {
-	color: #6679cc;
-}
-
-.token.attr-name {
-	color: #c76b29;
-}
-
+.token.operator,
 .token.entity,
 .token.url,
 .language-css .token.string,
-.style .token.string {
-	color: #22a2c9;
-}
-
-.token.attr-value,
-.token.keyword,
-.token.control,
-.token.directive,
-.token.unit {
-	color: #2f986d;
-}
-
-.token.statement,
-.token.regex,
-.token.atrule {
-	color: #22a2c9;
-}
-
-.token.placeholder,
+.style .token.string,
 .token.variable {
-	color: #3d8fd1;
+	color: #f8f8f2;
 }
 
-.token.deleted {
-	text-decoration: line-through;
+.token.atrule,
+.token.attr-value,
+.token.function,
+.token.class-name {
+	color: #f1fa8c;
 }
 
-.token.inserted {
-	border-bottom: 1px dotted #202746;
-	text-decoration: none;
+.token.keyword {
+	color: #8be9fd;
 }
 
-.token.italic {
-	font-style: italic;
+.token.regex,
+.token.important {
+	color: #ffb86c;
 }
 
 .token.important,
@@ -146,37 +116,12 @@ pre[class*="language-"] {
 	font-weight: bold;
 }
 
-.token.important {
-	color: #c94922;
+.token.italic {
+	font-style: italic;
 }
 
 .token.entity {
 	cursor: help;
-}
-
-pre > code.highlight {
-	outline: 0.4em solid #c94922;
-	outline-offset: .4em;
-}
-
-/* overrides color-values for the Line Numbers plugin
- * http://prismjs.com/plugins/line-numbers/
- */
-.line-numbers .line-numbers-rows {
-	border-right-color: #dfe2f1;
-}
-
-.line-numbers-rows > span:before {
-	color: #979db4;
-}
-
-/* overrides color-values for the Line Highlight plugin
- * http://prismjs.com/plugins/line-highlight/
- */
-.line-highlight {
-	background: rgba(107, 115, 148, 0.2);
-	background: -webkit-linear-gradient(left, rgba(107, 115, 148, 0.2) 70%, rgba(107, 115, 148, 0));
-	background: linear-gradient(to right, rgba(107, 115, 148, 0.2) 70%, rgba(107, 115, 148, 0));
 }
 
 `;

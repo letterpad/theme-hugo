@@ -1,50 +1,18 @@
-import {
-  CssVariables,
-  Fonts,
-  HugoBaseCss,
-  NormalizeCss,
-} from "../public/css/GlobalStyle.css";
+require("../public/css/style.css");
+require("../public/css/typography.css");
+
 import React, { Component } from "react";
 
 import Header from "../components/Header";
 import { ILayoutProps } from "../../../types";
+import { NormalizeCss } from "../public/css/GlobalStyle.css";
 import { PrismCss } from "../public/css/Prism.css";
 import StyledMain from "../styled/StyledMain";
 import styled from "styled-components";
 
-const darkTheme = `
-    --color-base: #dfdfdf;
-    --color-menu-link: #fff;
-    --color-border: #3c3c3c;
-    --color-accent: 70,183, 70;
-    --color-headings: #fff;
-    --bg-article-item: 30, 34, 50;
-    --bg-content: 25, 28, 39;
-    --bg-sidebar: 13, 15, 21;
-    --bg-list-article: 13, 15, 21;
-    --bg-footer: #11141d;
-`;
-
-const lightTheme = `
-    --color-menu-link: #fff;
-    --color-accent: 20, 181, 239;
-    --color-headings: #000;
-    --bg-article-item: 240, 240, 240;
-    --bg-content: 255, 255, 255;
-    --bg-sidebar: 13, 15, 21;
-    --bg-list-article: 245, 245, 245;
-    --bg-footer: #e6e6e6;
-`;
-const CSSVariables = styled.div<any>`
-  ${props => (props.dark ? darkTheme : lightTheme)};
-`;
-
-const theme =
-  typeof localStorage !== "undefined" ? localStorage.theme : "light";
-console.log(theme);
 class Layout extends Component<ILayoutProps, {}> {
   state = {
-    theme: theme,
+    theme: "light",
   };
 
   switchTheme = theme => {
@@ -52,19 +20,20 @@ class Layout extends Component<ILayoutProps, {}> {
     this.setState({ theme });
   };
 
+  componentDidMount() {
+    const theme =
+      typeof localStorage !== "undefined" ? localStorage.theme : "light";
+    this.setState({ theme });
+  }
+
   render() {
     const { Content, ...props } = this.props;
     const { settings, router } = props;
-    const theme = {
-      [this.state.theme]: true,
-    };
+
     return (
-      <CSSVariables {...theme}>
-        <Fonts />
+      <div className={"theme-" + this.state.theme}>
         <PrismCss />
-        <CssVariables />
         <NormalizeCss />
-        <HugoBaseCss />
         <Header
           settings={settings}
           router={router}
@@ -81,7 +50,7 @@ class Layout extends Component<ILayoutProps, {}> {
             />
           )}
         </StyledMain>
-      </CSSVariables>
+      </div>
     );
   }
 }
@@ -91,9 +60,14 @@ export default Layout;
 const Footer = styled.footer`
   background: var(--bg-footer);
   color: #4c587d;
-  margin: 0 -33px;
+  margin: 100px -33px -33px -33px;
   padding: 30px;
   margin-bottom: -20px;
   margin-top: 100px;
   text-align: center;
+  font-size: 1.1rem;
+  font-weight: 500;
+  a {
+    color: var(--bg-success);
+  }
 `;

@@ -14,7 +14,6 @@ import Paginate from "../components/Paginate";
 import Pagination from "../styled/Pagination";
 import { QUERY_POSTS } from "../../../../shared/queries/Queries";
 import React from "react";
-import config from "../../../../config";
 import { useQuery } from "react-apollo";
 
 const Posts: IThemeContainer = ({
@@ -61,7 +60,12 @@ const Posts: IThemeContainer = ({
 
   return (
     <section className="post-list">
-      <HeroImage image={banner.value} display={banner.value.length > 0} />
+      <HeroImage
+        description={settings.site_description.value}
+        image={banner.value}
+        display={banner.value.length > 0}
+        siteTitle={settings.site_title.value}
+      />
 
       {(posts.rows as Post[]).map((post, i) => (
         <ArticleListItem key={i} post={post} isStatic={false} />
