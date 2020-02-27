@@ -1,7 +1,7 @@
 require("../public/css/style.css");
 require("../public/css/typography.css");
 
-import React, { Component } from "react";
+import React, { useEffect, useState } from "react";
 
 import Header from "../components/Header";
 import { ILayoutProps } from "../../../types";
@@ -10,50 +10,86 @@ import { PrismCss } from "../public/css/Prism.css";
 import StyledMain from "../styled/StyledMain";
 import styled from "styled-components";
 
-class Layout extends Component<ILayoutProps, {}> {
-  state = {
-    theme: "light",
-  };
+const Layout: React.ComponentType<ILayoutProps> = props => {
+  const [theme, setTheme] = useState<"dark" | "light">("light");
 
-  switchTheme = theme => {
-    localStorage.theme = theme;
-    this.setState({ theme });
-  };
-
-  componentDidMount() {
+  useEffect(() => {
     const theme =
       typeof localStorage !== "undefined" ? localStorage.theme : "light";
-    this.setState({ theme });
-  }
+    setTheme(theme);
+  }, [theme]);
 
-  render() {
-    const { Content, ...props } = this.props;
-    const { settings, router } = props;
+  const switchTheme = theme => {
+    localStorage.theme = theme;
+    setTheme(theme);
+  };
 
-    return (
-      <div className={"theme-" + this.state.theme}>
-        <PrismCss />
-        <NormalizeCss />
-        <Header
-          settings={settings}
-          router={router}
-          switchTheme={this.switchTheme}
-        />
-        <StyledMain>
-          <Content {...props} />
-          {settings.site_footer.value && (
-            <Footer
-              className="site-footer"
-              dangerouslySetInnerHTML={{
-                __html: settings.site_footer.value,
-              }}
-            />
-          )}
-        </StyledMain>
-      </div>
-    );
-  }
-}
+  const { Content, settings, router, ...rest } = props;
+
+  return (
+    <div className={"theme-" + theme}>
+      <PrismCss />
+      <NormalizeCss />
+      <Header settings={settings} router={router} switchTheme={switchTheme} />
+      <StyledMain>
+        <Content {...props} />
+        {settings.site_footer.value && (
+          <Footer
+            className="site-footer"
+            dangerouslySetInnerHTML={{
+              __html: settings.site_footer.value,
+            }}
+          />
+        )}
+      </StyledMain>
+    </div>
+  );
+};
+
+// class _Layout extends Component<ILayoutProps, {}> {
+//   state = {
+//     theme: "light",
+//   };
+
+//   switchTheme = theme => {
+//     localStorage.theme = theme;
+//     this.setState({ theme });
+//   };
+
+//   componentDidMount() {
+//     const theme =
+//       typeof localStorage !== "undefined" ? localStorage.theme : "light";
+//     this.setState({ theme });
+//   }
+
+//   render() {
+//     const { Content, ...props } = this.props;
+//     const { settings, router } = props;
+
+//     return (
+//       <div className={"theme-" + this.state.theme}>
+//         <PrismCss />
+//         <NormalizeCss />
+//         <Header
+//           settings={settings}
+//           router={router}
+//           switchTheme={this.switchTheme}
+//         />
+//         <StyledMain>
+//           <Content {...props} />
+//           {settings.site_footer.value && (
+//             <Footer
+//               className="site-footer"
+//               dangerouslySetInnerHTML={{
+//                 __html: settings.site_footer.value,
+//               }}
+//             />
+//           )}
+//         </StyledMain>
+//       </div>
+//     );
+//   }
+// }
 
 export default Layout;
 

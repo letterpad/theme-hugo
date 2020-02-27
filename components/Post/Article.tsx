@@ -1,5 +1,3 @@
-// import "./article.css";
-
 import { PostMeta, PostTitle, StyledTags } from "../../styled/common";
 import React, { Component } from "react";
 
