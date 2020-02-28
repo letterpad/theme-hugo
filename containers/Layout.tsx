@@ -46,51 +46,6 @@ const Layout: React.ComponentType<ILayoutProps> = props => {
   );
 };
 
-// class _Layout extends Component<ILayoutProps, {}> {
-//   state = {
-//     theme: "light",
-//   };
-
-//   switchTheme = theme => {
-//     localStorage.theme = theme;
-//     this.setState({ theme });
-//   };
-
-//   componentDidMount() {
-//     const theme =
-//       typeof localStorage !== "undefined" ? localStorage.theme : "light";
-//     this.setState({ theme });
-//   }
-
-//   render() {
-//     const { Content, ...props } = this.props;
-//     const { settings, router } = props;
-
-//     return (
-//       <div className={"theme-" + this.state.theme}>
-//         <PrismCss />
-//         <NormalizeCss />
-//         <Header
-//           settings={settings}
-//           router={router}
-//           switchTheme={this.switchTheme}
-//         />
-//         <StyledMain>
-//           <Content {...props} />
-//           {settings.site_footer.value && (
-//             <Footer
-//               className="site-footer"
-//               dangerouslySetInnerHTML={{
-//                 __html: settings.site_footer.value,
-//               }}
-//             />
-//           )}
-//         </StyledMain>
-//       </div>
-//     );
-//   }
-// }
-
 export default Layout;
 
 const Footer = styled.footer`
