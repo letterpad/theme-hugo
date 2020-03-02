@@ -1,17 +1,17 @@
-import Home from "./containers/Home";
-import Layout from "./containers/Layout";
-import NotFound from "./containers/NotFound";
-import Posts from "./containers/Posts";
+import Home from "./src/home";
+import Layout from "./src/layout";
+import NotFound from "./src/notfound";
 // import Search from "./containers/Search";
-import SinglePage from "./containers/SinglePage";
-import SinglePost from "./containers/SinglePost";
+import Page from "./src/page";
+import Post from "./src/post";
+import Posts from "./src/posts";
 
 export default {
-  SinglePage: SinglePage,
-  Home: Home,
-  Layout: Layout,
-  Posts: Posts,
-  NotFound: NotFound,
-  SinglePost: SinglePost,
+  Page,
+  Home,
+  Layout,
+  Posts,
+  NotFound,
+  Post,
   Search: () => null, //Search,
 };

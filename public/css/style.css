@@ -92,7 +92,7 @@ body {
     --bg-content: 255, 255, 255;
     --bg-sidebar: rgba(13, 15, 21, 1);
     --bg-list-article: 245, 245, 245;
-    --bg-footer: #e6e6e6;
+    --bg-footer: whitesmoke;
   }
   .theme-dark {
     --color-base: #a7aab5;
