@@ -19,7 +19,7 @@ const Page: IThemeContainer["Page"] = ({ settings, loading, data }) => {
       <section className="page-detail">
         <HeroImage
           image={page.cover_image}
-          display={page.cover_image.length > 0}
+          display={page.cover_image.src.length > 0}
           description=""
           siteTitle=""
         />

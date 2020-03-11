@@ -31,7 +31,7 @@ const AdjacentPosts: React.FC<{ slug: string }> = ({ slug }) => {
     <Post
       direction="previous"
       slug={previous.slug}
-      img={previous.cover_image}
+      img={previous.cover_image.src}
       label="Previous"
     />
   );
@@ -39,7 +39,7 @@ const AdjacentPosts: React.FC<{ slug: string }> = ({ slug }) => {
     <Post
       direction="next"
       slug={next.slug}
-      img={next.cover_image}
+      img={next.cover_image.src}
       label="Next"
     />
   );
@@ -61,8 +61,8 @@ const Post: React.FC<{
   return (
     <Link to={slug} className={"adjacent-post-item " + direction}>
       <label>
-        {direction === "next" && label + " →"}
-        {direction === "previous" && "← " + label}
+        {direction === "next" && label}
+        {direction === "previous" && label}
       </label>
     </Link>
   );

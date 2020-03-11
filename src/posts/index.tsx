@@ -18,7 +18,6 @@ const Posts: IThemeContainer["Posts"] = ({
   const posts = data;
 
   if (loading) return <Loader />;
-
   if (!posts) {
     return <OhSnap message={settings.text_notfound.value} />;
   }
@@ -28,16 +27,16 @@ const Posts: IThemeContainer["Posts"] = ({
   }
 
   const { banner, site_title, site_description } = settings;
-
+  const bannerAttrs = JSON.parse(banner.value);
+  console.log("bannerAttrs :", bannerAttrs);
   return (
     <section className="post-list">
       <HeroImage
         description={site_description.value}
-        image={banner.value}
-        display={banner.value.length > 0}
+        image={bannerAttrs}
+        display={bannerAttrs.src.length > 0}
         siteTitle={site_title.value}
       />
-
       {(posts.rows as Post[]).map((post, i) => (
         <ArticleListItem key={i} post={post} isStatic={false} />
       ))}

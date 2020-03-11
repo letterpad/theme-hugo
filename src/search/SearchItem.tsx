@@ -45,7 +45,7 @@ const SearchItem: React.FC<{ post: Post; href: string }> = ({ post, href }) => {
         <p className="post-summary">{post.excerpt}</p>
         <footer className="post-footer">
           <StyledReadMore className="read-more" to={href}>
-            Read More →
+            Read More
           </StyledReadMore>
         </footer>
       </div>

@@ -37,14 +37,14 @@ class ArticleListItem extends Component<IArticleListItem> {
           <p className="post-summary">{post.excerpt}</p>
           <footer className="post-footer">
             <StyledReadMore className="read-more" to={href}>
-              Read More →
+              Read More
             </StyledReadMore>
           </footer>
         </div>
-        {post.cover_image != "" && (
+        {post.cover_image.src != "" && (
           <div className="post-image-box">
             <Link className="post-link" to={href}>
-              <LazyImage src={post.cover_image} width="100%" />
+              <LazyImage {...post.cover_image} />
             </Link>
           </div>
         )}

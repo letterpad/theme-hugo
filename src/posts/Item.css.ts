@@ -40,6 +40,8 @@ export const Container = styled.article`
         &:hover {
           color: rgba(var(--color-accent));
         }
+        font-size: 1.6rem;
+        line-height: 1.6;
       }
     }
   }
@@ -121,6 +123,10 @@ export const Container = styled.article`
   .post-footer {
     margin-top: 1rem;
     margin-bottom: 1.5rem;
+
+    a {
+      font-weight: 500;
+    }
   }
 `;
 export const PostTitleListItem = styled.h2<any>`
