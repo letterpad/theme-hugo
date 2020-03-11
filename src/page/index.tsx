@@ -5,7 +5,12 @@ import Loader from "../shared/Loader";
 import OhSnap from "../shared/OhSnap";
 import React from "react";
 
-const Page: IThemeContainer["Page"] = ({ settings, loading, data }) => {
+const Page: IThemeContainer["Page"] = ({
+  settings,
+  loading,
+  data,
+  helpers,
+}) => {
   const page = data;
   if (loading) return <Loader />;
   if (!page) {
@@ -22,12 +27,14 @@ const Page: IThemeContainer["Page"] = ({ settings, loading, data }) => {
           display={page.cover_image.src.length > 0}
           description=""
           siteTitle=""
+          getImageAttrs={helpers.getImageAttrs}
         />
         <Article
           post={page}
           displayAuthor={false}
           settings={settings}
           displayComments={false}
+          helpers={helpers}
         />
       </section>
     </div>

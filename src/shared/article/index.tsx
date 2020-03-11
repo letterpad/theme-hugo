@@ -4,6 +4,7 @@ import React, { Component } from "react";
 
 import Author from "./Author";
 import Comments from "./Comments";
+import { IHelpers } from "../../../../../helperProps";
 import { Link } from "react-router-dom";
 import { TypeSettings } from "../../../../../types";
 import moment from "moment";
@@ -15,6 +16,7 @@ interface IContent {
   adjacentPosts?: any;
   displayAuthor: boolean;
   displayComments: boolean;
+  helpers: IHelpers;
 }
 
 export default class Content extends Component<IContent> {
@@ -37,7 +39,13 @@ export default class Content extends Component<IContent> {
   };
 
   render() {
-    const { post, displayAuthor, displayComments, settings } = this.props;
+    const {
+      post,
+      displayAuthor,
+      displayComments,
+      settings,
+      helpers,
+    } = this.props;
     const disqusShortname = settings.disqus_id.value;
     const disqusConfig = {
       url: post.slug,
@@ -45,8 +53,7 @@ export default class Content extends Component<IContent> {
       title: post.title,
     };
 
-    const content = post.html;
-
+    const content = helpers.setResponsiveImages(post.html);
     return (
       <Container>
         <header className="post-header">

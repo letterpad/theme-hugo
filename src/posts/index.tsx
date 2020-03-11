@@ -13,6 +13,7 @@ const Posts: IThemeContainer["Posts"] = ({
   initialProps,
   loading,
   data,
+  helpers,
   ...rest
 }) => {
   const posts = data;
@@ -28,7 +29,6 @@ const Posts: IThemeContainer["Posts"] = ({
 
   const { banner, site_title, site_description } = settings;
   const bannerAttrs = JSON.parse(banner.value);
-  console.log("bannerAttrs :", bannerAttrs);
   return (
     <section className="post-list">
       <HeroImage
@@ -36,6 +36,7 @@ const Posts: IThemeContainer["Posts"] = ({
         image={bannerAttrs}
         display={bannerAttrs.src.length > 0}
         siteTitle={site_title.value}
+        getImageAttrs={helpers.getImageAttrs}
       />
       {(posts.rows as Post[]).map((post, i) => (
         <ArticleListItem key={i} post={post} isStatic={false} />

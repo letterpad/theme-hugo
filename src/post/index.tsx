@@ -7,7 +7,12 @@ import { IThemeContainer } from "../../../../types";
 import Loader from "../shared/Loader";
 import OhSnap from "../shared/OhSnap";
 
-const Post: IThemeContainer["Post"] = ({ settings, loading, data }) => {
+const Post: IThemeContainer["Post"] = ({
+  settings,
+  loading,
+  data,
+  helpers,
+}) => {
   const post = data;
   if (loading) return <Loader />;
   if (!post) {
@@ -32,12 +37,14 @@ const Post: IThemeContainer["Post"] = ({ settings, loading, data }) => {
           display={post.cover_image.src.length > 0}
           description=""
           siteTitle=""
+          getImageAttrs={helpers.getImageAttrs}
         />
         <Article
           post={post}
           displayAuthor={displayAuthor}
           settings={settings}
           displayComments={true}
+          helpers={helpers}
         />
       </section>
     </div>
