@@ -39,7 +39,12 @@ const Posts: IThemeContainer["Posts"] = ({
         getImageAttrs={helpers.getImageAttrs}
       />
       {(posts.rows as Post[]).map((post, i) => (
-        <ArticleListItem key={i} post={post} isStatic={false} />
+        <ArticleListItem
+          key={i}
+          post={post}
+          isStatic={false}
+          getImageAttrs={helpers.getImageAttrs}
+        />
       ))}
 
       <Paginate limit={10} count={posts.count} match={router.match} />

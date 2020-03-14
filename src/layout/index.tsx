@@ -24,6 +24,7 @@ const Layout: React.ComponentType<ILayoutProps> = props => {
   };
 
   const { Content, settings, router, ...rest } = props;
+
   const { site_footer, subscribe_embed } = settings;
   return (
     <div className={"theme-" + theme}>
