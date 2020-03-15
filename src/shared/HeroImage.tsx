@@ -60,6 +60,7 @@ const StyledHero = styled.div`
     height: auto;
     width: 100%;
     max-height: 600px;
+    object-fit: cover;
   }
   @media screen and (max-width: 800px) {
     display: none;
