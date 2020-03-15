@@ -4,7 +4,7 @@ import { Link } from "react-router-dom";
 import { Post } from "../../../../../__generated__/gqlTypes";
 import React from "react";
 import { StyledReadMore } from "../posts/Item.css";
-import moment from "moment";
+import { getReadableDate } from "../../../../../shared/date";
 import styled from "styled-components";
 
 const StyledArticle = styled.article`
@@ -39,7 +39,7 @@ const SearchItem: React.FC<{ post: Post; href: string }> = ({ post, href }) => {
             </Link>
           </PostTitle>
           <PostMeta className="post-meta">
-            {moment(new Date(post.publishedAt)).format("LL")}
+            {getReadableDate(post.publishedAt)}
           </PostMeta>
         </header>
         <p className="post-summary">{post.excerpt}</p>

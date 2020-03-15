@@ -1,5 +1,4 @@
-import React, { useEffect } from "react";
-
+import React from "react";
 import styled from "styled-components";
 
 const HeroImage = ({
@@ -12,13 +11,6 @@ const HeroImage = ({
   const { width, height, src } = image;
   if (!display) return null;
   const attrs = getImageAttrs(src, [480, 720, 960, 1200, 1440, 1600, 2000]);
-
-  useEffect(() => {
-    //@ts-ignore
-    new LazyLoad({
-      elements_selector: "img[loading='lazy']",
-    });
-  }, []);
 
   return (
     <StyledHero className="hero-banner">

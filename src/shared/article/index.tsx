@@ -7,7 +7,7 @@ import Comments from "./Comments";
 import { IHelpers } from "../../../../../helperProps";
 import { Link } from "react-router-dom";
 import { TypeSettings } from "../../../../../types";
-import moment from "moment";
+import { getReadableDate } from "../../../../../../shared/date";
 import styled from "styled-components";
 
 interface IContent {
@@ -61,8 +61,8 @@ export default class Content extends Component<IContent> {
             {post.title}
           </PostTitle>
           <PostMeta className="post-meta">
-            {this.props.post.author.fname} ·{" "}
-            {moment(post.createdAt).format("LL")} · 4 min read ·{" "}
+            {this.props.post.author.fname} · {getReadableDate(post.createdAt)} ·{" "}
+            {post.reading_time} ·{" "}
             {this.renderTaxonomies(TaxonomyTypes.PostCategory)}
           </PostMeta>
         </header>

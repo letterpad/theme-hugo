@@ -5,7 +5,7 @@ import { IHelpers } from "../../../../helperProps";
 import { Link } from "react-router-dom";
 import { Post } from "../../../../../__generated__/gqlTypes";
 import { PostMeta } from "../shared/article/Article.css";
-import moment from "moment";
+import { getReadableDate } from "../../../../../shared/date";
 
 interface IArticleListItem {
   post: Post;
@@ -14,8 +14,6 @@ interface IArticleListItem {
 }
 
 class ArticleListItem extends Component<IArticleListItem> {
-  componentDidMount() {}
-
   render() {
     const { post, getImageAttrs } = this.props;
     let href = post.slug;
@@ -40,7 +38,7 @@ class ArticleListItem extends Component<IArticleListItem> {
             </PostTitleListItem>
             <PostMeta className="post-meta">
               {post.author.fname} {post.author.lname} ·{" "}
-              {moment(post.createdAt).format("LL")}· {post.reading_time}
+              {getReadableDate(post.createdAt)}· {post.reading_time}
             </PostMeta>
           </header>
           <p className="post-summary">{post.excerpt}</p>

@@ -22,10 +22,6 @@ const Post: IThemeContainer["Post"] = ({
   }
   const displayAuthor = JSON.parse(settings.displayAuthorInfo.value); // convert "true" to true
 
-  useEffect(() => {
-    helpers.triggerLazyLoad();
-  }, [post.id]);
-
   return (
     <div>
       <section className="post-detail">
