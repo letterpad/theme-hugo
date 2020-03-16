@@ -5,7 +5,6 @@ import { IHelpers } from "../../../../helperProps";
 import { Link } from "react-router-dom";
 import { Post } from "../../../../../__generated__/gqlTypes";
 import { PostMeta } from "../shared/article/Article.css";
-import { getReadableDate } from "../../../../../shared/date";
 
 interface IArticleListItem {
   post: Post;
@@ -37,8 +36,8 @@ class ArticleListItem extends Component<IArticleListItem> {
               </Link>
             </PostTitleListItem>
             <PostMeta className="post-meta">
-              {post.author.fname} {post.author.lname} ·{" "}
-              {getReadableDate(post.createdAt)}· {post.reading_time}
+              {post.author.fname} {post.author.lname} · {post.publishedAt}·{" "}
+              {post.reading_time}
             </PostMeta>
           </header>
           <p className="post-summary">{post.excerpt}</p>
