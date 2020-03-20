@@ -60,7 +60,7 @@ export default class Content extends Component<IContent> {
           <PostMeta className="post-meta">
             {this.props.post.author.fname} · {post.publishedAt} ·{" "}
             {post.reading_time} ·{" "}
-            {this.renderTaxonomies(TaxonomyTypes.PostCategory)}
+            {this.renderTaxonomies(TaxonomyTypes.Categories)}
           </PostMeta>
         </header>
         <StyledContent className="post-content">
@@ -71,7 +71,7 @@ export default class Content extends Component<IContent> {
           />
         </StyledContent>
 
-        {this.renderTaxonomies(TaxonomyTypes.PostTag)}
+        {this.renderTaxonomies(TaxonomyTypes.Tags)}
         {displayAuthor && <Author post={post} />}
         {/* {this.props.adjacsentPosts} */}
 
