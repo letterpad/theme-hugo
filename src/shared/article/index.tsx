@@ -22,15 +22,13 @@ export default class Content extends Component<IContent> {
   renderTaxonomies = (type: TaxonomyTypes) => {
     const { post } = this.props;
 
-    const taxonomies = post.taxonomies
-      .filter(taxonomy => taxonomy.type === type)
-      .map(taxonomy => {
-        return (
-          <Link key={taxonomy.slug} to={taxonomy.slug}>
-            #{taxonomy.name}
-          </Link>
-        );
-      });
+    const taxonomies = post[type].map(taxonomy => {
+      return (
+        <Link key={taxonomy.slug} to={taxonomy.slug}>
+          #{taxonomy.name}
+        </Link>
+      );
+    });
 
     return taxonomies.length > 0 ? (
       <StyledTags className="tags">{taxonomies}</StyledTags>
