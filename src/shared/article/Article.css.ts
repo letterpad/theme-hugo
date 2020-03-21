@@ -25,6 +25,10 @@ export const PostMeta = styled.h2`
   margin-top: 0.5rem;
   margin-bottom: 1rem;
   font-weight: 500;
+
+  .featured-tag {
+    color: rgba(var(--color-accent));
+  }
 `;
 
 export const StyledTags = styled.div`

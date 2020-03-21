@@ -37,7 +37,10 @@ class ArticleListItem extends Component<IArticleListItem> {
             </PostTitleListItem>
             <PostMeta className="post-meta">
               {post.author.fname} {post.author.lname} · {post.publishedAt}·{" "}
-              {post.reading_time}
+              {post.reading_time} ·{" "}
+              <span className="featured-tag">
+                {post.featured ? "Featured" : ""}
+              </span>
             </PostMeta>
           </header>
           <p className="post-summary">{post.excerpt}</p>

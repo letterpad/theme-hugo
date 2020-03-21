@@ -1,4 +1,4 @@
-import ArticleListItem from "./Item";
+import ArticleListItem from "./ArticleListItem";
 import HeroImage from "../shared/HeroImage";
 import { IThemeContainer } from "../../../../types";
 import Loader from "../shared/Loader";
