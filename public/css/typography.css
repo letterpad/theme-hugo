@@ -104,17 +104,17 @@
     padding-top: 2.2em;
     border: none;
   }
-   {
-    hr::after {
-      content: "...";
-      font-size: 16px;
-      zoom: 3;
-      margin-top: -20px;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-    }
+
+  hr::after {
+    content: "...";
+    font-size: 16px;
+    zoom: 3;
+    margin-top: -20px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
   }
+
   section {
     padding: 0;
     padding-top: var(--spacingTop);

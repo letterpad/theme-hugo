@@ -70,14 +70,20 @@ class Header extends Component<IHeaderProps, any> {
             {menu.map((item, i) => {
               return (
                 <li className="menu-item" key={i}>
-                  <NavLink
-                    to={i === 0 ? "/" : item.slug}
-                    className="normal"
-                    activeClassName="is-active"
-                    exact
-                  >
-                    {i === 0 ? "Home" : item.title}
-                  </NavLink>
+                  {item.type !== "custom" ? (
+                    <NavLink
+                      to={i === 0 ? "/" : item.slug}
+                      className="normal"
+                      activeClassName="is-active"
+                      exact
+                    >
+                      {item.title}
+                    </NavLink>
+                  ) : (
+                    <a href={item.slug} target="_blank">
+                      {item.title}
+                    </a>
+                  )}
                 </li>
               );
             })}
