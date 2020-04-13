@@ -10,17 +10,17 @@ import { NavLink, RouteComponentProps } from "react-router-dom";
 import React, { Component } from "react";
 
 import { EnumThemes } from "../../hugoTypes";
+import { ILayoutProps } from "../../../../types";
 import { Link } from "react-router-dom";
 import SocialIcons from "./SocialIcons";
-import { TypeSettings } from "../../../../types";
 
-interface IHeaderProps {
-  settings: TypeSettings;
+interface ISidebarProps {
+  settings: ILayoutProps["settings"];
   router: RouteComponentProps;
   switchTheme: (name: EnumThemes) => void;
 }
 
-class Header extends Component<IHeaderProps, any> {
+class Sidebar extends Component<ISidebarProps, any> {
   state = {
     menuOpen: false,
   };
@@ -33,9 +33,9 @@ class Header extends Component<IHeaderProps, any> {
 
   render() {
     const { settings, switchTheme } = this.props;
-    const menu = JSON.parse(settings.menu.value);
+    const menu = settings.menu;
     const menucollapsedClass = this.state.menuOpen ? "" : "collapsed";
-    const logo = settings.site_logo.value || null;
+    const logo = settings.site_logo.src || null;
 
     return (
       <Container className="site-header">
@@ -43,7 +43,7 @@ class Header extends Component<IHeaderProps, any> {
           <Link to="/">
             <Logo>
               <img
-                src={settings.site_logo.value}
+                src={settings.site_logo.src}
                 alt="Logo"
                 className="site_logo"
               />
@@ -54,9 +54,9 @@ class Header extends Component<IHeaderProps, any> {
         {!logo && (
           <div>
             <Link to="/">
-              <h1 className="title">{settings.site_title.value}</h1>
+              <h1 className="title">{settings.site_title}</h1>
             </Link>
-            <p className="subtitle">{settings.site_tagline.value}</p>
+            <p className="subtitle">{settings.site_tagline}</p>
           </div>
         )}
         <button className="menu-toggle" type="button" onClick={this.toggleMenu}>
@@ -64,7 +64,7 @@ class Header extends Component<IHeaderProps, any> {
           {!this.state.menuOpen && "☰"}
         </button>
 
-        <SiteDescription>{settings.site_description.value}</SiteDescription>
+        <SiteDescription>{settings.site_description}</SiteDescription>
         <Menu className={"site-menu " + menucollapsedClass}>
           <ul className="menu-list">
             {menu.map((item, i) => {
@@ -77,11 +77,11 @@ class Header extends Component<IHeaderProps, any> {
                       activeClassName="is-active"
                       exact
                     >
-                      {item.title}
+                      {item.label}
                     </NavLink>
                   ) : (
                     <a href={item.slug} target="_blank">
-                      {item.title}
+                      {item.label}
                     </a>
                   )}
                 </li>
@@ -104,7 +104,7 @@ class Header extends Component<IHeaderProps, any> {
           <footer
             className="site-footer"
             dangerouslySetInnerHTML={{
-              __html: settings.site_footer.value,
+              __html: settings.site_footer,
             }}
           />
           <h2 className="offscreen">Social Networks</h2>
@@ -114,4 +114,4 @@ class Header extends Component<IHeaderProps, any> {
     );
   }
 }
-export default Header;
+export default Sidebar;

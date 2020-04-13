@@ -1,11 +1,10 @@
-import React, { useEffect } from "react";
-
 // import AdjacentPosts from "../../components/Post/AdjacentPosts";
 import Article from "../shared/article";
 import HeroImage from "../../src/shared/HeroImage";
 import { IThemeContainer } from "../../../../types";
 import Loader from "../shared/Loader";
 import OhSnap from "../shared/OhSnap";
+import React from "react";
 
 const Post: IThemeContainer["Post"] = ({
   settings,
@@ -20,7 +19,7 @@ const Post: IThemeContainer["Post"] = ({
       <OhSnap message="Sorry, this post does not exist or might be restricted." />
     );
   }
-  const displayAuthor = JSON.parse(settings.displayAuthorInfo.value); // convert "true" to true
+  const displayAuthor = JSON.parse(settings.displayAuthorInfo); // convert "true" to true
 
   return (
     <div>

@@ -5,9 +5,9 @@ const IconInstagram = require("../../public/images/social/instagram.svg");
 
 import React, { useEffect, useState } from "react";
 
-import { TypeSettings } from "../../../../types";
+import { Setting } from "../../../../../__generated__/gqlTypes";
 
-const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
+const SocialIcons: React.FC<{ settings: Setting }> = ({ settings }) => {
   const iconMap = {
     social_twitter: IconTwitter.default,
     social_facebook: IconFacebook.default,
@@ -26,7 +26,7 @@ const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
     // get all the settings with start with "social_"
     .filter(
       setting =>
-        setting.indexOf("social_") === 0 && settings[setting].value.length > 0,
+        setting.indexOf("social_") === 0 && settings[setting].length > 0,
     )
     .map(setting => {
       return (
@@ -34,10 +34,10 @@ const SocialIcons: React.FC<{ settings: TypeSettings }> = ({ settings }) => {
           <a
             target="_blank"
             rel="noopener"
-            href={settings[setting].value}
+            href={settings[setting]}
             title={setting}
           >
-            <img src={icons[settings[setting].option]} width="20" height="20" />
+            <img src={icons[setting]} width="20" height="20" />
           </a>
         </li>
       );

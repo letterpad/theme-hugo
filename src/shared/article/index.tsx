@@ -60,7 +60,6 @@ export default class Content extends Component<IContent> {
           <PostMeta className="post-meta">
             {this.props.post.author.fname} · {post.publishedAt} ·{" "}
             {post.reading_time} ·{" "}
-            {this.renderTaxonomies(TaxonomyTypes.Categories)}
           </PostMeta>
         </header>
         <StyledContent className="post-content">

@@ -5,10 +5,10 @@ import { Footer, Main } from "./Layout.css";
 import React, { useEffect, useState } from "react";
 
 import { EnumThemes } from "../../hugoTypes";
-import Header from "./Sidebar";
 import { ILayoutProps } from "../../../../types";
 import { NormalizeCss } from "../../public/css/GlobalStyle.css";
 import { PrismCss } from "../../public/css/Prism.css";
+import Sidebar from "./Sidebar";
 
 const Layout: React.ComponentType<ILayoutProps> = props => {
   const [theme, setTheme] = useState<EnumThemes>(EnumThemes.light);
@@ -23,14 +23,19 @@ const Layout: React.ComponentType<ILayoutProps> = props => {
     setTheme(theme);
   };
 
-  const { Content, settings, router, ...rest } = props;
+  const { Content, settings, router, navigationData, ...rest } = props;
 
   const { site_footer, subscribe_embed } = settings;
   return (
     <div className={"theme-" + theme}>
       <PrismCss />
       <NormalizeCss />
-      <Header settings={settings} router={router} switchTheme={switchTheme} />
+      <Sidebar
+        navigationData={navigationData}
+        settings={settings}
+        router={router}
+        switchTheme={switchTheme}
+      />
       <Main>
         <Content {...props} />
         <Footer className="site-footer">

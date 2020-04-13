@@ -20,22 +20,23 @@ const Posts: IThemeContainer["Posts"] = ({
 
   if (loading) return <Loader />;
   if (!posts) {
-    return <OhSnap message={settings.text_notfound.value} />;
+    return (
+      <OhSnap message="Something wrong happened. Please try again later" />
+    );
   }
 
   if (posts.rows.length === 0) {
-    return <OhSnap message={settings.text_posts_empty.value} />;
+    return <OhSnap message="No posts found" />;
   }
 
   const { banner, site_title, site_description } = settings;
-  const bannerAttrs = JSON.parse(banner.value);
   return (
     <section className="post-list">
       <HeroImage
-        description={site_description.value}
-        image={bannerAttrs}
-        display={bannerAttrs.src.length > 0}
-        siteTitle={site_title.value}
+        description={site_description}
+        image={banner}
+        display={banner.src.length > 0}
+        siteTitle={site_title}
         getImageAttrs={helpers.getImageAttrs}
       />
       {(posts.rows as Post[]).map((post, i) => (
