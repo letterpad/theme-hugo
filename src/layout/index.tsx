@@ -23,24 +23,19 @@ const Layout: React.ComponentType<ILayoutProps> = props => {
     setTheme(theme);
   };
 
-  const { Content, settings, router, navigationData, ...rest } = props;
+  const { Content, settings, router, ...rest } = props;
 
   const { site_footer, subscribe_embed } = settings;
   return (
     <div className={"theme-" + theme}>
       <PrismCss />
       <NormalizeCss />
-      <Sidebar
-        navigationData={navigationData}
-        settings={settings}
-        router={router}
-        switchTheme={switchTheme}
-      />
+      <Sidebar settings={settings} router={router} switchTheme={switchTheme} />
       <Main>
         <Content {...props} />
         <Footer className="site-footer">
-          <SetDangerousHTML html={subscribe_embed.value} id="subscribe" />
-          <SetDangerousHTML html={site_footer.value} />
+          <SetDangerousHTML html={subscribe_embed} id="subscribe" />
+          <SetDangerousHTML html={site_footer} />
         </Footer>
       </Main>
     </div>

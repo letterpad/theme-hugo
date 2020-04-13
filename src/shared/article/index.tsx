@@ -1,17 +1,20 @@
 import { Container, PostMeta, PostTitle, StyledTags } from "./Article.css";
-import { Post, TaxonomyTypes } from "../../../../../../__generated__/gqlTypes";
+import {
+  Post,
+  Setting,
+  TaxonomyTypes,
+} from "../../../../../../__generated__/gqlTypes";
 import React, { Component } from "react";
 
 import Author from "./Author";
 import Comments from "./Comments";
 import { IHelpers } from "../../../../../helperProps";
 import { Link } from "react-router-dom";
-import { TypeSettings } from "../../../../../types";
 import styled from "styled-components";
 
 interface IContent {
   post: Post;
-  settings: TypeSettings;
+  settings: Setting;
   adjacentPosts?: any;
   displayAuthor: boolean;
   displayComments: boolean;
@@ -43,7 +46,7 @@ export default class Content extends Component<IContent> {
       settings,
       helpers,
     } = this.props;
-    const disqusShortname = settings.disqus_id.value;
+    const disqusShortname = settings.disqus_id;
     const disqusConfig = {
       url: post.slug,
       identifier: post.id.toString(),
