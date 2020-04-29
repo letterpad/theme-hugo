@@ -1,3 +1,4 @@
+//@ts-nocheck
 import {
   Post,
   PostsQuery,
@@ -7,11 +8,12 @@ import React, { Component } from "react";
 
 import { EventBusInstance } from "../../../../../shared/eventBus";
 import { IThemeComponentProps } from "../../../../types";
-// import Loader from "../../components/Loader";
-import OhSnap from "../../components/OhSnap";
-import Paginate from "../../components/Paginate";
+import Loader from "../../../../helpers/Loader";
+import OhSnap from "../../../../helpers/OhSnap";
+import Paginate from "../shared/Paginate";
 import { QUERY_POSTS } from "../../../../../shared/queries/Queries";
-import SearchItem from "../../components/SearchItem";
+import SearchItem from "./SearchItem";
+// import SearchItem from "../../components/SearchItem";
 import config from "../../../../../config";
 
 interface ISearchState {

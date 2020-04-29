@@ -12,9 +12,7 @@ const Author: React.FC<IProps> = ({ post }) => {
         {post.author.avatar && <img src={post.author.avatar} />}
       </div>
       <div className="author-details">
-        <div className="author-name">
-          {post.author.fname} {post.author.lname}
-        </div>
+        <div className="author-name">{post.author.name}</div>
         <div className="author-bio">{post.author.bio}</div>
       </div>
     </Container>

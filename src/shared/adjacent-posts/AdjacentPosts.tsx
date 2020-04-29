@@ -1,15 +1,14 @@
-import React from "react";
-import { Link } from "react-router-dom";
-
-import StyledAdjacentPosts from "./AdjacentPosts.css";
-import { useQuery } from "react-apollo";
-import { QUERY_ADJACENT_POSTS } from "../../../../../shared/queries/Queries";
 import {
   AdjacentPostsQuery,
-  AdjacentPosts,
   AdjacentPostsQueryVariables,
-} from "../../../../../__generated__/gqlTypes";
+} from "../../../../../../__generated__/gqlTypes";
+
+import { Link } from "react-router-dom";
 import Loader from "../Loader";
+import { QUERY_ADJACENT_POSTS } from "../../../../../../shared/queries/Queries";
+import React from "react";
+import StyledAdjacentPosts from "./AdjacentPosts.css";
+import { useQuery } from "react-apollo";
 
 const AdjacentPosts: React.FC<{ slug: string }> = ({ slug }) => {
   const { loading, data } = useQuery<

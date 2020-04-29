@@ -61,7 +61,7 @@ export default class Content extends Component<IContent> {
             {post.title}
           </PostTitle>
           <PostMeta className="post-meta">
-            {this.props.post.author.fname} · {post.publishedAt} ·{" "}
+            {this.props.post.author.name} · {post.publishedAt} ·{" "}
             {post.reading_time} ·{" "}
           </PostMeta>
         </header>
