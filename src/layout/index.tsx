@@ -27,7 +27,7 @@ const Layout: React.ComponentType<ILayoutProps> = props => {
 
   const { site_footer, subscribe_embed } = settings;
   return (
-    <div className={"theme-" + theme}>
+    <div className={theme}>
       <PrismCss />
       <NormalizeCss />
       <Sidebar settings={settings} router={router} switchTheme={switchTheme} />
@@ -48,8 +48,8 @@ export default Layout;
 
 function getTheme(): EnumThemes {
   return typeof localStorage !== "undefined"
-    ? localStorage.theme || "light"
-    : "light";
+    ? localStorage.theme || "theme-light"
+    : "theme-light";
 }
 
 function SetDangerousHTML({ html, id = "" }: { html: string; id?: string }) {
