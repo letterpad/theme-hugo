@@ -26,6 +26,8 @@ export const PostMeta = styled.h2`
   margin-bottom: 1rem;
   font-weight: 500;
 
+  font-family: "Lora", serif;
+
   .featured-tag {
     color: rgba(var(--color-accent));
   }

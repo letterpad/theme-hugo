@@ -1,4 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Lora:400,500&display=swap");
 
 .theme-dark #letterpad-editor-container {
   h1,
@@ -16,9 +17,11 @@
   --spacingTopSmall: 0.86rem;
   --spacingBottom: 1rem;
   position: relative;
-  line-height: 1.45;
+  line-height: 1.8;
   flex: 1;
-  font-size: 1.5rem;
+  font-size: 1.3rem;
+  letter-spacing: 1.5px;
+  font-family: "Lora", serif;
   margin-top: 40px;
   margin-bottom: 40px;
   letter-spacing: -0.5;

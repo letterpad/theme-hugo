@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css?family=Yrsa:300,400,500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700&display=swap");
 
 html {
   --color-text-primary-invert: #b7b7b7;
@@ -59,9 +59,9 @@ html {
 
   --box-shadow-inset: inset -1px 3px 9px -3px rgba(0, 0, 0, 0.32);
 
-  font-size: 16px;
+  font-size: 1rem;
   line-height: 1.618;
-  font-family: "Yrsa", serif;
+  font-family: "Noto Sans JP", sans-serif;
   @media (max-width: 991px) {
     font-size: 14px;
     line-height: 1.4;

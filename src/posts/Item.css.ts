@@ -5,13 +5,12 @@ export const Container = styled.article`
   position: relative;
   line-height: 1.8;
   display: flex;
-  max-width: 70rem;
+  max-width: 60rem;
   margin: auto;
   margin-bottom: 40px;
   border-top: none;
   background: rgba(var(--bg-list-article), 1);
-  font-size: 1.1rem;
-  line-height: 1.3;
+  font-size: 0.9rem;
   @media screen and (max-width: 1250px) {
     flex-direction: column-reverse;
   }
@@ -113,7 +112,6 @@ export const Container = styled.article`
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: left;
-    word-break: break-all;
     @media screen and (max-width: 767px) {
       font-size: 1.2rem;
       line-height: 1.5;
@@ -142,6 +140,5 @@ export const PostTitleListItem = styled.h2<any>`
 `;
 
 export const StyledReadMore = styled(Link)`
-  letter-spacing: 1px;
   font-weight: bold;
 `;

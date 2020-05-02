@@ -32,7 +32,6 @@ const SiteTitle = styled.h1`
   width: 100%;
   text-align: center;
   color: #fff;
-  text-transform: uppercase;
   font-size: 4rem;
   margin-top: -40px;
 `;

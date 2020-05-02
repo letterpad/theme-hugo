@@ -23,7 +23,9 @@ export const NormalizeCss = createGlobalStyle`
         margin: 0.67em 0;
     }
     h1, h2, h3, h4, h5, h6 {
-        font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Helvetica Neue", sans-serif;
+        /* font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Oxygen, Ubuntu, Cantarell, "Fira Sans", "Droid Sans", "PingFang SC", "Hiragino Sans GB", "Microsoft YaHei", "WenQuanYi Micro Hei", "Helvetica Neue", sans-serif; */
+        font-family: 'Libre Baskerville', serif;
+        letter-spacing: -1px;
     }
     figcaption,
     figure,
