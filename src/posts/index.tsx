@@ -1,3 +1,4 @@
+import { ArticleCollection } from "./Item.css";
 import ArticleListItem from "./ArticleListItem";
 import HeroImage from "../shared/HeroImage";
 import { IThemeContainer } from "../../../../types";
@@ -39,14 +40,16 @@ const Posts: IThemeContainer["Posts"] = ({
         siteTitle={site_title}
         getImageAttrs={helpers.getImageAttrs}
       />
-      {(posts.rows as Post[]).map((post, i) => (
-        <ArticleListItem
-          key={i}
-          post={post}
-          isStatic={false}
-          getImageAttrs={helpers.getImageAttrs}
-        />
-      ))}
+      <ArticleCollection>
+        {(posts.rows as Post[]).map((post, i) => (
+          <ArticleListItem
+            key={i}
+            post={post}
+            isStatic={false}
+            getImageAttrs={helpers.getImageAttrs}
+          />
+        ))}
+      </ArticleCollection>
 
       <Paginate limit={10} count={posts.count} match={router.match} />
     </section>

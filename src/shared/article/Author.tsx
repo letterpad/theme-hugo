@@ -46,7 +46,6 @@ const Container = styled.div`
       margin-bottom: 10px;
     }
     .author-bio {
-      font-size: 1.2rem;
       line-height: 1.3;
       opacity: 0.7;
       &:hover {

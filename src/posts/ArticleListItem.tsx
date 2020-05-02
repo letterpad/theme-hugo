@@ -28,6 +28,13 @@ class ArticleListItem extends Component<IArticleListItem> {
 
     return (
       <Container className="post-entry">
+        {post.cover_image.src != "" && (
+          <div className="post-image-box">
+            <Link className="post-link" to={href}>
+              <img {...attrs} />
+            </Link>
+          </div>
+        )}
         <div className="post-details">
           <header className="post-header">
             <PostTitleListItem className="post-title">
@@ -49,13 +56,6 @@ class ArticleListItem extends Component<IArticleListItem> {
             </StyledReadMore>
           </footer>
         </div>
-        {post.cover_image.src != "" && (
-          <div className="post-image-box">
-            <Link className="post-link" to={href}>
-              <img {...attrs} />
-            </Link>
-          </div>
-        )}
       </Container>
     );
   }

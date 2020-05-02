@@ -61,7 +61,7 @@ html {
 
   font-size: 1rem;
   line-height: 1.618;
-  font-family: "Noto Sans JP", sans-serif;
+  font-family: "Lora", serif;
   @media (max-width: 991px) {
     font-size: 14px;
     line-height: 1.4;

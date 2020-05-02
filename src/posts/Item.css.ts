@@ -1,21 +1,36 @@
 import { Link } from "react-router-dom";
 import styled from "styled-components";
 
+export const ArticleCollection = styled.div`
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  grid-gap: 2rem;
+  max-width: 1024px;
+  margin: 0 auto;
+  @media (max-width: 1100px) {
+    margin: 1rem;
+    grid-template-columns: 1fr 1fr;
+  }
+  @media (max-width: 767px) {
+    margin: 1rem;
+    grid-template-columns: 1fr;
+  }
+`;
 export const Container = styled.article`
   position: relative;
-  line-height: 1.8;
-  display: flex;
-  max-width: 60rem;
-  margin: auto;
-  margin-bottom: 40px;
-  border-top: none;
-  background: rgba(var(--bg-list-article), 1);
-  font-size: 0.9rem;
-  @media screen and (max-width: 1250px) {
-    flex-direction: column-reverse;
-  }
-  @media screen and (max-width: 800px) {
-    margin: 0 -20px 40px -20px;
+  overflow: hidden;
+  counter-increment: posts;
+  border-radius: 0.75rem;
+  font-family: var(--font-sans-serif);
+  font-weight: 200;
+  background: #fff;
+  box-shadow: rgba(50, 50, 50, 0.1) 0 0 2rem, rgba(50, 50, 50, 0.1) 0 0 0.2rem;
+  transition: transform 0.25s ease-out;
+
+  @media (hover: hover) and (min-width: 540px) {
+    &:hover {
+      transform: scale(1.03, 1.03);
+    }
   }
   .post-details {
     display: flex;
@@ -39,8 +54,8 @@ export const Container = styled.article`
         &:hover {
           color: rgba(var(--color-accent));
         }
-        font-size: 1.6rem;
-        line-height: 1.6;
+        font-size: 1.4rem;
+        line-height: 1.4;
       }
     }
   }
@@ -54,10 +69,19 @@ export const Container = styled.article`
       }
       img {
         width: 100%;
-        height: 300px;
+        height: 15vw;
         transition: 0.3s transform linear;
         &:hover {
           transform: scale(1.1);
+        }
+        @media (max-width: 900px) {
+          height: 25vw;
+        }
+        @media (max-width: 760px) {
+          height: 50vw;
+        }
+        @media (max-width: 540px) {
+          height: 60vw;
         }
       }
     }
@@ -112,6 +136,7 @@ export const Container = styled.article`
     margin-top: 1rem;
     margin-bottom: 1rem;
     text-align: left;
+    line-height: 1.5;
     @media screen and (max-width: 767px) {
       font-size: 1.2rem;
       line-height: 1.5;

@@ -26,7 +26,10 @@
   margin-bottom: 40px;
   letter-spacing: -0.5;
   word-spacing: -0.5;
-
+  &:first-letter {
+    font-size: 2rem;
+    font-weight: bold;
+  }
   @media (min-width: 1080px) {
     margin-top: 56px;
     margin-bottom: 56px;

@@ -116,7 +116,7 @@ export const Logo = styled.div`
     margin-top: 2rem;
     max-width: 10rem;
     margin-bottom: 2rem;
-    max-height: 80px;
+    max-height: 56px;
   }
 
   @media screen and (max-width: 800px) {
