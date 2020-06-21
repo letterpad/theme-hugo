@@ -59,7 +59,7 @@ export const NormalizeCss = createGlobalStyle`
     }
     b,
     strong {
-        font-weight: bolder;
+        font-weight: 500;
     }
     dfn {
         font-style: italic;

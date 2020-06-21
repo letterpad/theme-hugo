@@ -1,7 +1,7 @@
 import styled from "styled-components";
 
 export const Main = styled.div`
-  background: rgba(var(--bg-content), 1);
+  background: var(--bg-content);
   color: var(--color-base);
   position: relative;
   margin-left: 16rem;

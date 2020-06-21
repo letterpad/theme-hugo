@@ -1,59 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Libre+Baskerville:400,700&display=swap");
 
 html {
-  --color-text-primary-invert: #b7b7b7;
-  --color-text-primary-light: #616161;
-  --color-text-muted: rgb(185, 185, 185);
-  --color-text-secondary: #000000;
-  --color-text-secondary-light: #4c4c4c;
-
-  --color-bg-primary: #27282f;
-  --color-bg-secondary: #1f2129;
-  --link-hover: #1a82d6;
-  --color-bg-content: #fefefe;
-  /*change above*/
-  --fs-small: 12px;
-  --fs-normal: 14px;
-  --fs-medium: 16px;
-  --fs-large: 18px;
-
-  --bg-sections: #fff;
-  --bg-base: #f7f7f7;
-  --color-border: #e6e6e6;
-
-  --color-base: #3d3d3d;
-  --color-text-1: #595959;
-  --color-text-2: #434141;
-  --color-text-3: #7b7b7b;
-  --color-muted: #a8a8a8;
-
-  --color-accent: 20, 181, 239;
-
-  --bg-primary: transparent;
-  --color-primary: #333;
-  --bg-hover-primary: transparent;
-  --color-hover-primary: #111;
-
-  --bg-success: #4caf50;
-  --color-success: #e8f5e9;
-  --bg-hover-success: #43a047;
-  --color-hover-success: #fff;
-
-  --bg-danger: #e64a19;
-  --color-danger: #fbe9e7;
-  --bg-hover-danger: #d84315;
-  --color-hover-danger: #fff;
-
-  --base-shade-9: #212121;
-  --base-shade-8: #424242;
-  --base-shade-7: #616161;
-  --base-shade-6: #757575;
-  --base-shade-5: #8e8e8e;
-  --base-shade-4: #8e8e8e;
-  --base-shade-3: #8e8e8e;
-  --base-shade-2: #eeeeee;
-  --base-shade-1: #f5f5f5;
-
   --box-shadow: 0 2px 6px rgba(150, 150, 150, 0.26),
     0 0px 6px rgba(210, 210, 210, 0.23);
 
@@ -61,7 +8,7 @@ html {
 
   font-size: 1rem;
   line-height: 1.618;
-  font-family: "Lora", serif;
+  font-family: "Roboto", san-serif;
   @media (max-width: 991px) {
     font-size: 14px;
     line-height: 1.4;
@@ -85,23 +32,26 @@ body {
   }
 
   .theme-light {
+    --shadow: #ddd;
     --color-menu-link: #fff;
+    --color-border: #3c3c3c;
     --color-accent: 20, 181, 239;
     --color-headings: #000;
     --bg-article-item: 240, 240, 240;
-    --bg-content: 255, 255, 255;
+    --bg-content: #fff;
     --bg-sidebar: rgba(13, 15, 21, 1);
     --bg-list-article: 245, 245, 245;
     --bg-footer: whitesmoke;
   }
   .theme-dark {
+    --shadow: #1b1919;
     --color-base: #a7aab5;
     --color-menu-link: #fff;
     --color-border: #3c3c3c;
     --color-accent: 70, 183, 70;
     --color-headings: #fff;
     --bg-article-item: 30, 34, 50;
-    --bg-content: 25, 28, 39;
+    --bg-content: #0f1116;
     --bg-sidebar: rgba(13, 15, 21, 1);
     --bg-list-article: 13, 15, 21;
     --bg-footer: #11141d;

@@ -1,5 +1,5 @@
 @import url("https://fonts.googleapis.com/css?family=IBM+Plex+Mono:400,500&display=swap");
-@import url("https://fonts.googleapis.com/css?family=Lora:400,500&display=swap");
+@import url("https://fonts.googleapis.com/css?family=Roboto:400,500&display=swap");
 
 .theme-dark #letterpad-editor-container {
   h1,
@@ -19,8 +19,8 @@
   position: relative;
   line-height: 1.8;
   flex: 1;
-  font-size: 1.3rem;
-  font-family: "Lora", serif;
+  font-size: 1.2rem;
+  font-family: "Roboto", sans-serif;
   margin-top: 40px;
   margin-bottom: 40px;
   letter-spacing: -0.5;
@@ -225,7 +225,7 @@
   th {
     border: 1px solid var(--color-border);
     text-align: left;
-    font-size: 1.3rem;
+    font-size: 1.2rem;
     color: var(--color-base);
   }
   table {

@@ -23,8 +23,8 @@ export const Container = styled.article`
   border-radius: 0.75rem;
   font-family: var(--font-sans-serif);
   font-weight: 200;
-  background: #fff;
-  box-shadow: rgba(50, 50, 50, 0.1) 0 0 2rem, rgba(50, 50, 50, 0.1) 0 0 0.2rem;
+  background: rgba(var(--bg-base));
+  box-shadow: 0 0 2rem var(--shadow);
   transition: transform 0.25s ease-out;
 
   @media (hover: hover) and (min-width: 540px) {

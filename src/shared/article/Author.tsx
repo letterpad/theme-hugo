@@ -41,7 +41,7 @@ const Container = styled.div`
     display: flex;
     flex-direction: column;
     .author-name {
-      font-size: 1.3rem;
+      font-size: 1.2rem;
       font-weight: 600;
       margin-bottom: 10px;
     }
